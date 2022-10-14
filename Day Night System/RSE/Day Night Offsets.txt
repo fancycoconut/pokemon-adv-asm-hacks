@@ -1,0 +1,275 @@
+Case "BPEE"
+.Offsets.Kernel = 134218661 '080003A5
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134880229 '080A1BE5
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33782548 '02037B14
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134879747 '080A1A03
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50355450 '03005CFA
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 33703120 '020244D0
+.Offsets.MenuFlag = 33685510 '02020006
+.Offsets.IndoorFlag = 33780527 '0203732F
+.Offsets.RTCReturnAdress = 134772437 '080876D5
+
+.Offsets.HookDMA = 134879736 '080A19F8
+.Offsets.HookRTC = 134673876 '0806F5D4
+.Offsets.HookCPUSet = 134880224 '080A1BE0
+
+.Offsets.IntroHack = 580
+.Offsets.SWI01Pos = 938
+
+.Offsets.Hook1 = 554670 '876AE
+.Offsets.Hook2 = 662000 'A19F0
+.Offsets.Hook3 = 662488 'A1BD8
+.Offsets.Nintendofix = 1493382 '16C986
+###########################################################################
+Case "AXVE":
+.Offsets.Kernel = 134218317 '0800024D - Ruby
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.IntroHack = 0 'main + 0xA78
+
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134692073 '08073CE9 - Ruby - MX
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33746632 '0202EEC8 - Ruby - MX
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134691591 '08073B07 - Ruby - MX
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50348090 '0300403A - Ruby's RTC
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 50351563 '03004DCB - Ruby - MX
+.Offsets.MenuFlag = 33685518 '0202000E - Ruby - MX
+.Offsets.IndoorFlag = 33744959 '0202E83F - Ruby - MX
+.Offsets.RTCReturnAdress = 134562547 '080542F3 - Ruby - MX
+
+.Offsets.HookDMA = 134691608 '08073B18 - Ruby's HookDMA
+.Offsets.HookRTC = 135025266 '080C5272 - Ruby's HookRTC
+.Offsets.HookCPUSet = 134692096 '08073D00 - Ruby's HookCPUSET
+
+.Offsets.SWI01Pos = 594 'Ruby - MX
+
+.Offsets.Hook1 = 344794 '542DA - Ruby - Ruby - MX
+.Offsets.Hook2 = 473844 '73AF4 - Ruby - Ruby - MX
+.Offsets.Hook3 = 474332 '73CDC - Ruby - Ruby - MX
+#########################################################################################
+Case "AXPE":
+.Offsets.Kernel = 134218317 '0800024D
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.IntroHack = 0 'main + 0xA78
+
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134692077 '08073CED
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33746632 '0202EEC8
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134691595 '08073B0B
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50348090 '0300403A - Ruby's RTC
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 50351563 '03004DCB
+.Offsets.MenuFlag = 33685518 '0202000E
+.Offsets.IndoorFlag = 33744959 '0202E83F
+.Offsets.RTCReturnAdress = 134562551 '080542F7
+
+.Offsets.HookDMA = 134691612 '08073B1C
+.Offsets.HookRTC = 135025266 '080C5272
+.Offsets.HookCPUSet = 134692100 '08073D04
+
+.Offsets.SWI01Pos = 594 'Ruby - MX
+
+.Offsets.Hook1 = 344798 '542DE
+.Offsets.Hook2 = 473848 '73AF8
+.Offsets.Hook3 = 474336 '73CE0
+#########################################################################################
+Case "AXVS":
+.Offsets.Kernel = 134218625 '08000381
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.IntroHack = 0 'main + 0xA78
+
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134693285 '080741A5
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33746632 '0202EEC8
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134692803 '08073FC3
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50348090 '0300403A - Ruby's RTC
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 50351563 '03004DCB
+.Offsets.MenuFlag = 33685518 '0202000E
+.Offsets.IndoorFlag = 33744959 '0202E83F
+.Offsets.RTCReturnAdress = 134563631 '0805472F
+
+.Offsets.HookDMA = 134692820 '08073FD4
+.Offsets.HookRTC = 135026034 '080C5572
+.Offsets.HookCPUSet = 134693308 '080741BC
+
+.Offsets.SWI01Pos = 6C8
+
+.Offsets.Hook1 = 345878 '54716
+.Offsets.Hook2 = 475056 '73FB0
+.Offsets.Hook3 = 475544 '74198
+####################################################################################
+Case "AXPS":
+.Offsets.Kernel = 134218625 '08000381
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.IntroHack = 0 'main + 0xA78
+
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134693289 '080741A9
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33746632 '0202EEC8
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134692807 '08073FC7
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50348090 '0300403A - Ruby's RTC
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 50351563 '03004DCB
+.Offsets.MenuFlag = 33685518 '0202000E
+.Offsets.IndoorFlag = 33744959 '0202E83F
+.Offsets.RTCReturnAdress = 134563635 '08054733
+
+.Offsets.HookDMA = 134692824 '08073FD8
+.Offsets.HookRTC = 135026034 '080C5572
+.Offsets.HookCPUSet = 134693312 '080741C0
+
+.Offsets.SWI01Pos = 6C8
+
+.Offsets.Hook1 = 345882 '5471A
+.Offsets.Hook2 = 475060 '73FB4
+.Offsets.Hook3 = 475548 '7419C
+#####################################################################################
+Case "AXPF":
+.Offsets.Kernel = 134218625 '08000381
+.Offsets.IOBG0CNT = 67108872 '04000008
+.Offsets.IntroPalette = 0 'main
+.Offsets.Font0 = 0 'main + 0x370
+.Offsets.Font2 = 0 'main + 0x3C0
+.Offsets.IntroHack = 0 'main + 0xA78
+
+.Offsets.Font0Dest = 100696064 '06008000
+.Offsets.Font1Dest = 100696328 '06008108
+.Offsets.Font2Dest = 100696402 '06008152
+.Offsets.Font3Dest = 100696656 '06008250
+.Offsets.Load2RAMAdress = 33809920 '0203E600
+
+.Offsets.CPUSetReturn = 134693277 '0807419D
+.Offsets.DayNightFlag = 33808384 '0203E000
+.Offsets.PaletteDay = 33746632 '0202EEC8
+.Offsets.PaletteNight = 33808388 '0203E004
+
+.Offsets.DMA3ReturnAdress = 134692795 '08073FBB
+.Offsets.IODMA3 = 67109076 '040000D4
+.Offsets.DMA3Para = 2147484160# '80000200
+.Offsets.PaletteFlags1 = 65535 '0000FFFF
+.Offsets.PaletteFlags2 = 65535 '0000FFFF
+
+.Offsets.RTCAdress = 50348090 '0300403A - Ruby's RTC
+.Offsets.Special1 = 50344188 '030030FC
+.Offsets.Special2 = 50344304 '03003170
+.Offsets.Special3 = 825 '00000339
+.Offsets.Special4 = 50352128 '03005000
+.Offsets.Special5 = 3098 '00000C1A
+.Offsets.BattleFlag = 50351563 '03004DCB
+.Offsets.MenuFlag = 33685518 '0202000E
+.Offsets.IndoorFlag = 33744959 '0202E83F
+.Offsets.RTCReturnAdress = 134563619 '08054723
+
+.Offsets.HookDMA = 134692812 '08073FCC
+.Offsets.HookRTC = 135026054 '080C5586
+.Offsets.HookCPUSet = 134693300 '080741B4
+
+.Offsets.SWI01Pos = 6C8
+
+.Offsets.Hook1 = 345866 '5470A
+.Offsets.Hook2 = 475048 '73FA8
+.Offsets.Hook3 = 475536 '74190

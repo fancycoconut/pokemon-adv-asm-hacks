@@ -1,0 +1,81 @@
+@ RS RTC Routines (I/O Port Control)
+@ ----------------------------------------------------
+
+@ MainFunc
+@ ----------------------------------------------------
+0800026c  f008 bl $08009248
+
+08009248  b530 push {r4,r5,lr}
+0800924a  4d0a ldr r5, [$08009274] (=$03000458)
+0800924c  2000 mov r0, #0x0
+0800924e  8028 strh r0, [r5, #0x0]
+08009250  f7ff bl $080090f4 @ Manipulates REG_IME
+08009254  f1d6 bl $081dff18 @ Manipulates I/O Port Control
+08009258  f1d6 bl $081dff48
+0800925c  4c06 ldr r4, [$08009278] (=$0300046c)
+0800925e  7020 strb r0, [r4, #0x0]
+08009260  f7ff bl $0800910c  @ Manipulates REG_IME
+08009264  7824 ldrb r4, [r4, #0x0]
+08009266  200f mov r0, #0xf
+08009268  4020 and r0, r4
+0800926a  2800 cmp r0, #0x0
+0800926c  d106 bne $0800927c
+0800926e  2001 mov r0, #0x1
+08009270  8028 strh r0, [r5, #0x0]
+08009272  e012 b $0800929a
+
+08009274  0458 lsl r0, r3, #0x11 @ data 0x03000458
+08009276  0300 lsl r0, r0, #0x0c
+08009278  046c lsl r4, r5, #0x11 @ data 0x0300046C
+0800927a  0300 lsl r0, r0, #0x0c
+
+0800927c  20f0 mov r0, #0xf0
+0800927e  4020 and r0, r4
+08009280  2800 cmp r0, #0x0
+08009282  d000 beq $08009286
+08009284  2002 mov r0, #0x2
+08009286  8028 strh r0, [r5, #0x0]
+08009288  4c05 ldr r4, [$080092a0] (=$03000460)
+0800928a  1c20 add r0, r4, #0x0
+0800928c  f000 bl $08009314
+08009290  1c20 add r0, r4, #0x0
+08009292  f000 bl $08009328
+08009296  4903 ldr r1, [$080092a4] (=$03000458)
+08009298  8008 strh r0, [r1, #0x0]
+0800929a  bc30 pop {r4,r5}
+0800929c  bc01 pop {r0}
+0800929e  4700 bx r0
+
+@ I/O Port Control
+@ ----------------------------------------------------
+081dff18  b580 push {r7,lr}
+081dff1a  466f mov r7, sp
+081dff1c  f000 bl $081e07b8 @ Enables Read/Write for I/O Port Control
+081dff20  4802 ldr r0, [$081dff2c] (=$03000f36) @ IWRAM location for either 0x1 or 0x0?
+081dff22  2100 mov r1, #0x0
+081dff24  7001 strb r1, [r0, #0x0]
+081dff26  bc80 pop {r7}
+081dff28  bc01 pop {r0}
+081dff2a  4700 bx r0
+
+@ Enables Read/Write for I/O Port Control (0x080000c8)
+@ ----------------------------------------------------
+081e07b8  b580 push {r7,lr}
+081e07ba  466f mov r7, sp
+081e07bc  4802 ldr r0, [$081e07c8] (=$080000c8)
+081e07be  2101 mov r1, #0x1
+081e07c0  8001 strh r1, [r0, #0x0]
+081e07c2  bc80 pop {r7}
+081e07c4  bc01 pop {r0}
+081e07c6  4700 bx r0
+
+@ Enables Write only for I/O Port Control (0x080000c8)
+@ ----------------------------------------------------
+081e07cc  b580 push {r7,lr}
+081e07ce  466f mov r7, sp
+081e07d0  4802 ldr r0, [$081e07dc] (=$080000c8)
+081e07d2  2100 mov r1, #0x0
+081e07d4  8001 strh r1, [r0, #0x0]
+081e07d6  bc80 pop {r7}
+081e07d8  bc01 pop {r0}
+081e07da  4700 bx r0

@@ -1,0 +1,80 @@
+@ RS Intro Hack [#1 - Display SetClock Msg]
+@ By ZodiacDaGreat
+@
+@ ---------------------------------------------
+.code 16
+.thumb
+
+	push {r4, lr}
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	ldr r2, .NextRoutine
+	lsl r1, r0, #0x2
+	add r1, r1, r0
+	lsl r1, r1, #0x3
+	add r4, r1, r2
+	mov r1, #0x12
+	ldsh r0, [r4, r1]
+	cmp r0, #0x0
+	beq .Endme
+
+	ldr r2, .UnknownPointer
+	mov r1, #0x18
+	ldsh r0, [r4, r1]
+	lsl r1, r0, #0x4
+	add r1, r1, r0
+	lsl r1, r1, #0x2
+	add r1, r1, r2
+	ldrb r2, [r1, #0x1]
+	mov r0, #0xD
+	neg r0, r0
+	and r0, r2
+	strb r0, [r1, #0x1]
+	ldrh r1, [r4, #0x16]
+	mov r2, #0x16
+	ldsh r0, [r4, r2]
+	cmp r0, #0x0
+	beq .Next
+	sub r0, r1, #0x1
+	strh r0, [r4, #0x16]
+	b .Endme
+
+.Next:
+	mov r0, #0x2
+	mov r1, #0xD
+	mov r2, #0x1B
+	mov r3, #0x12
+	ldr r7, .ShowBox
+	bl .BranchLink
+
+	ldr r0, .Pointer2Text
+	mov r1, #0x3
+	mov r2, #0xE
+	ldr r7, .ShowText
+	bl .BranchLink
+
+	ldr r0, .NextRoutinePtr
+	str r0, [r4]
+
+.Endme:
+	pop {r4}
+	pop {r0}
+	bx r0
+
+.BranchLink:
+	bx r7
+
+@ ---------------------------------------------
+.align 2
+.NextRoutine:
+.word 0x03004B20
+.UnknownPointer:
+.word 0x02020004
+.ShowBox:
+.word 0x08071F09
+.Pointer2Text:
+.word 0x08A00000
+.ShowText:
+.word 0x08072011
+.NextRoutinePtr:
+.word 0x088000C1

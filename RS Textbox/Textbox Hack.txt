@@ -1,0 +1,253 @@
+Ruby Fire Red Textbox hack
+==========================
+Textbox loading routine at 0x08065348
+
+Textbox tiles at 0x08EA0108
+
+Old Routine:
+08065348  b500 push {lr}
+0806534a  6ac0 ldr r0, [r0, #0x2c]
+0806534c  6901 ldr r1, [r0, #0x10]
+0806534e  4805 ldr r0, [$08065364] (=$08ea0108)
+08065350  4a05 ldr r2, [$08065368] (=$030005ae)
+08065352  8812 ldrh r2, [r2, #0x0]
+08065354  0152 lsl r2, r2, #0x05
+08065356  1889 add r1, r1, r2
+08065358  2270 mov r2, #0x70
+0806535a  f17b bl $081e07e8
+0806535e  bc01 pop {r0}
+08065360  4700 bx r0
+
+New Routine:
+08065348  b500 push {lr}
+0806534a  6ac0 ldr r0, [r0, #0x2c]
+0806534c  6901 ldr r1, [r0, #0x10]
+0806534e  4805 ldr r0, [$08065364] (=$08900000) @ Pointer to the textbox tileset
+08065350  4a05 ldr r2, [$08065368] (=$030005ae)
+08065352  8812 ldrh r2, [r2, #0x0]
+08065354  0152 lsl r2, r2, #0x05
+08065356  1889 add r1, r1, r2
+08065358  2270 mov r2, #0x98 @ New Amount of bytes to be copied
+0806535a  f17b bl $081e07e8
+0806535e  bc01 pop {r0}
+08065360  4700 bx r0
+
+08065280  b5f0 push {r4-r7,lr}
+08065282  4657 mov r7, r10
+08065284  464e mov r6, r9
+08065286  4645 mov r5, r8
+08065288  b4e0 push {r5-r7}
+0806528a  b087 add sp, -#0x1c
+0806528c  9001 str r0, [sp, #0x4]
+0806528e  980f ldr r0, [sp, #0x3c]
+08065290  0609 lsl r1, r1, #0x18
+08065292  0e09 lsr r1, r1, #0x18
+08065294  9102 str r1, [sp, #0x8]
+08065296  0612 lsl r2, r2, #0x18
+08065298  0e12 lsr r2, r2, #0x18
+0806529a  9203 str r2, [sp, #0xc]
+0806529c  061b lsl r3, r3, #0x18
+0806529e  0e1b lsr r3, r3, #0x18
+080652a0  9304 str r3, [sp, #0x10]
+080652a2  0600 lsl r0, r0, #0x18
+080652a4  0e00 lsr r0, r0, #0x18
+080652a6  4681 mov r9, r0
+080652a8  9901 ldr r1, [sp, #0x4]
+080652aa  7988 ldrb r0, [r1, #0x6]
+080652ac  0300 lsl r0, r0, #0x0c
+080652ae  491f ldr r1, [$0806532c] (=$030005ae)
+080652b0  8809 ldrh r1, [r1, #0x0]
+080652b2  4308 orr r0, r1
+080652b4  0400 lsl r0, r0, #0x10
+080652b6  0c00 lsr r0, r0, #0x10
+080652b8  9005 str r0, [sp, #0x14]
+080652ba  9b01 ldr r3, [sp, #0x4]
+080652bc  6ad8 ldr r0, [r3, #0x2c]
+080652be  6940 ldr r0, [r0, #0x14]
+080652c0  4682 mov r10, r0
+080652c2  2500 mov r5, #0x0
+080652c4  4648 mov r0, r9
+080652c6  3002 add r0, #0x2
+080652c8  4285 cmp r5, r0
+080652ca  da27 bge $0806531c
+080652cc  9f04 ldr r7, [sp, #0x10]
+080652ce  3706 add r7, #0x6
+080652d0  9006 str r0, [sp, #0x18]
+080652d2  2400 mov r4, #0x0
+080652d4  1c68 add r0, r5, #0x1
+080652d6  4680 mov r8, r0
+080652d8  42bc cmp r4, r7
+080652da  da19 bge $08065310
+080652dc  9903 ldr r1, [sp, #0xc]
+080652de  1948 add r0, r1, r5
+080652e0  0146 lsl r6, r0, #0x05
+080652e2  464b mov r3, r9
+080652e4  9300 str r3, [sp, #0x0]
+080652e6  9805 ldr r0, [sp, #0x14]
+080652e8  1c21 add r1, r4, #0x0
+080652ea  1c2a add r2, r5, #0x0
+080652ec  9b04 ldr r3, [sp, #0x10]
+080652ee  f7ff bl $08065214
+080652f2  9902 ldr r1, [sp, #0x8]
+080652f4  190a add r2, r1, r4
+080652f6  18b2 add r2, r6, r2
+080652f8  0052 lsl r2, r2, #0x01
+080652fa  4452 add r2, r10
+080652fc  9b01 ldr r3, [sp, #0x4]
+080652fe  7999 ldrb r1, [r3, #0x6]
+08065300  0309 lsl r1, r1, #0x0c
+08065302  4301 orr r1, r0
+08065304  8011 strh r1, [r2, #0x0]
+08065306  1c60 add r0, r4, #0x1
+08065308  0600 lsl r0, r0, #0x18
+0806530a  0e04 lsr r4, r0, #0x18
+0806530c  42bc cmp r4, r7
+0806530e  dbe8 blt $080652e2
+08065310  4641 mov r1, r8
+08065312  0608 lsl r0, r1, #0x18
+08065314  0e05 lsr r5, r0, #0x18
+08065316  9b06 ldr r3, [sp, #0x18]
+08065318  429d cmp r5, r3
+0806531a  dbda blt $080652d2
+0806531c  b007 add sp, #0x1c
+0806531e  bc38 pop {r3-r5}
+08065320  4698 mov r8, r3
+08065322  46a1 mov r9, r4
+08065324  46aa mov r10, r5
+08065326  bcf0 pop {r4-r7}
+08065328  bc01 pop {r0}
+0806532a  4700 bx r0
+
+Palette Loading Routine:
+08002a1c  b500 push {lr}
+08002a1e  4a04 ldr r2, [$08002a30] (=$081e66b2) @ Textbox Palette
+08002a20  7901 ldrb r1, [r0, #0x4]
+08002a22  0109 lsl r1, r1, #0x04
+08002a24  1c10 add r0, r2, #0x0
+08002a26  2220 mov r2, #0x20
+08002a28  f071 bl $08073a58
+08002a2c  bc01 pop {r0}
+08002a2e  4700 bx r0
+
+---------------------------------------------------------------
+Textbox Hack 1 - Editing the Textbox (Using Only 1 Textbox)
+
+08376290 => Textbox arrangement data (needs to be edited) 0x46 bytes
+
+Insert:
+000001000200020003000000000005000600070007000800090000000A000B00070007000C000D000000050806080700070008080908000000000F0010001000110000000000
+
+----------------------------------------------------------------
+Textbox Hack 2 - Using 2 Textboxes {Like Fire Red}
+
+Textbox Arrangement data is at 0x8376290
+
+1. Normal Textbox loading routine
+---------------------------------
+Original Routine:
+08064ace  4802 ldr r0, [$08064ad8] (=$0202e87c)
+08064ad0  f000 bl $08065348
+08064ad4  e005 b $08064ae2
+
+Hacked:
+08064ace  4802 ldr r0, [$08064ad8] (=$08800001) @ Pointer to Dual Textbox Routine
+08064ad0  4700 bx r0
+08064ad4  e005 b $08064ae2
+
+2
+Original Routine:
+08065348  b500 push {lr}
+0806534a  6ac0 ldr r0, [r0, #0x2c]
+0806534c  6901 ldr r1, [r0, #0x10]
+0806534e  4805 ldr r0, [$08065364] (=$08ea0108)
+08065350  4a05 ldr r2, [$08065368] (=$030005ae)
+08065352  8812 ldrh r2, [r2, #0x0]
+08065354  0152 lsl r2, r2, #0x05
+08065356  1889 add r1, r1, r2
+08065358  2270 mov r2, #0x70
+0806535a  f17b bl $081e07e8
+0806535e  bc01 pop {r0}
+08065360  4700 bx r0
+
+Hacked:
+08065348  b500 push {lr}
+0806534a  6ac0 ldr r0, [r0, #0x2c]
+0806534c  6901 ldr r1, [r0, #0x10]
+0806534e  4805 ldr r0, [$08065364] (=$08ea0108) @ Pointer to Dialog Textbox Graphics
+08065350  4a05 ldr r2, [$08065368] (=$030005ae)
+08065352  8812 ldrh r2, [r2, #0x0]
+08065354  0152 lsl r2, r2, #0x05
+08065356  1889 add r1, r1, r2
+08065358  2298 mov r2, #0x98 @ 0x98
+0806535a  f17b bl $081e07e8
+0806535e  bc01 pop {r0}
+08065360  4700 bx r0
+
+-----------------------------------------------------------------
+Dual Textbox Routine:
+@ Textbox Hack (Loading Routine)
+@ By ZodiacDaGreat
+@ Version: 1.0.0
+@ ----------------------------------------------
+.code 16
+.thumb
+
+	push {lr}
+	ldr r0, .Flag
+	ldr r1, .GetFlagAddressFunc
+	bl .BranchLink
+
+	ldrb r1, [r0]
+	cmp r1, #0x1
+	beq .SignPost
+
+.Dialog:
+	ldr r0, .ImportantPointer
+	ldr r0, [r0, #0x2C]
+	ldr r1, [r0, #0x10]
+	ldr r0, .DialogTxtboxGraphics
+	ldr r2, .ImportantPointer2
+	ldrh r2, [r2]
+	lsl r2, r2, #0x5
+	add r1, r1, r2
+	mov r2, #0x98
+	swi 0xC
+	b .EndMe
+
+.SignPost:
+	ldr r0, .ImportantPointer
+	ldr r0, [r0, #0x2C]
+	ldr r1, [r0, #0x10]
+	ldr r0, .SignPostTxtboxGraphics
+	ldr r2, .ImportantPointer2
+	ldrh r2, [r2]
+	lsl r2, r2, #0x5
+	add r1, r1, r2
+	mov r2, #0x98
+	swi 0xC
+
+.EndMe:
+	pop {r0}
+
+	ldr r0, .ReturnAdress
+	bx r0
+
+.BranchLink:
+	bx r1
+
+@ ----------------------------------------------
+.align 2
+.Flag:
+.word 0x00001000
+.GetFlagAddressFunc:
+.word 0x080692AD
+.ImportantPointer:
+.word 0x0202E87C
+.DialogTxtboxGraphics:
+.word 0x08900000
+.ImportantPointer2:
+.word 0x030005AE
+.SignPostTxtboxGraphics:
+.word 0x08900400
+.ReturnAdress:
+.word 0x08064AD5

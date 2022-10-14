@@ -1,0 +1,259 @@
+RS Fire Red styled Trainer Card Hack by ZodiacDaGreat
+-----------------------------------------------------
+Tilemap
+=======
+-Front Tilemap is at 0xE8CAC0 sized 0x500 bytes
+-Back Tilemap is at 0xE8CFC0 sized 0x500 bytes
+-Background Tilemap is at 0xe8d9c0 sized 0x500 bytes
+
+Tileset
+=======
+Tileset is located at 0xE8B4E0 to repoint it just change the pointer at 0x93E88.
+
+Edited versions of the tilemap and tileset are prepared and just needs to be inserted.
+
+
+Hack 1 - Changing the Tileset, Badge loading routine
+====================================================
+Alternative hack to mimic how Fire Red loads its tileset - LZ77 compression. So we just need to compress the tileset and then change the routine to decompress it.
+
+The Original Tileset Loading Routine is:
+----------------------------------------
+08093e28  b5f0 push {r4-r7,lr}
+08093e2a  f000 bl $08093ea0
+08093e2e  4815 ldr r0, [$08093e84] (=$083b5f6c)
+08093e30  21e0 mov r1, #0xe0
+08093e32  2220 mov r2, #0x20
+08093e34  f7df bl $08073a58
+08093e38  4b13 ldr r3, [$08093e88] (=$08e8b4e0) @ Pointer to tileset
+08093e3a  24c0 mov r4, #0xc0
+08093e3c  04e4 lsl r4, r4, #0x13 @ (r4 = 0x6000000)
+08093e3e  25a4 mov r5, #0xa4
+08093e40  016d lsl r5, r5, #0x05 @ (r5 = 0x1480)
+08093e42  4912 ldr r1, [$08093e8c] (=$040000d4) @ DMA 3
+08093e44  4e12 ldr r6, [$08093e90] (=$80000800) @ DMA para
+08093e46  2280 mov r2, #0x80
+08093e48  0152 lsl r2, r2, #0x05 @ (r2 = 0x1000)
+08093e4a  2780 mov r7, #0x80
+08093e4c  063f lsl r7, r7, #0x18 @ (r7 = 0x80000000)
+08093e4e  600b str r3, [r1, #0x0] @ writes tileset pointer to DMA3 source
+08093e50  604c str r4, [r1, #0x4] @ writes VRAM pointer to DMA3 destination
+08093e52  608e str r6, [r1, #0x8] @ sets up DMA3 controller - DMA para
+08093e54  6888 ldr r0, [r1, #0x8]
+08093e56  189b add r3, r3, r2 @ (r3 = 0x8E8C4E0)
+08093e58  18a4 add r4, r4, r2 @ (r4 = 0x6001000)
+08093e5a  1aad sub r5, r5, r2 @ (r5 = 0x480)
+08093e5c  4295 cmp r5, r2
+08093e5e  d8f6 bhi $08093e4e
+08093e60  600b str r3, [r1, #0x0]
+08093e62  604c str r4, [r1, #0x4]
+08093e64  0868 lsr r0, r5, #0x01
+08093e66  4338 orr r0, r7
+08093e68  6088 str r0, [r1, #0x8]
+08093e6a  6888 ldr r0, [r1, #0x8]
+08093e6c  4909 ldr r1, [$08093e94] (=$083b5ab8) @ Pointer to badges
+08093e6e  4a0a ldr r2, [$08093e98] (=$06001480) @ VRAM Destination for the badges (must be modified)
+08093e70  4806 ldr r0, [$08093e8c] (=$040000d4)
+08093e72  6001 str r1, [r0, #0x0]
+08093e74  6042 str r2, [r0, #0x4]
+08093e76  4909 ldr r1, [$08093e9c] (=$80000200)
+08093e78  6081 str r1, [r0, #0x8]
+08093e7a  6880 ldr r0, [r0, #0x8]
+08093e7c  bcf0 pop {r4-r7}
+08093e7e  bc01 pop {r0}
+08093e80  4700 bx r0
+08093e82  0000 lsl r0, r0, #0x00
+
+Insert 0048 0047 [Pointer+1] 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 at 0x93e38
+insert 00180006 at 0x93E98
+
+New routine:
+------------
+08093e28  b5f0 push {r4-r7,lr}
+08093e2a  f000 bl $08093ea0
+08093e2e  4815 ldr r0, [$08093e84] (=$083b5f6c)
+08093e30  21e0 mov r1, #0xe0
+08093e32  2220 mov r2, #0x20
+08093e34  f7df bl $08073a58
+08093e38  4800 ldr r0, [$08093e3c] (=$08800001)
+08093e3a  4700 bx r0
+08093e3c  0001 lsl r1, r0, #0x00
+08093e3e  0880 lsr r0, r0, #0x02
+08093e40  0000 lsl r0, r0, #0x00
+08093e42  0000 lsl r0, r0, #0x00
+08093e44  0000 lsl r0, r0, #0x00
+08093e46  0000 lsl r0, r0, #0x00
+08093e48  0000 lsl r0, r0, #0x00
+08093e4a  0000 lsl r0, r0, #0x00
+08093e4c  0000 lsl r0, r0, #0x00
+08093e4e  0000 lsl r0, r0, #0x00
+08093e50  0000 lsl r0, r0, #0x00
+08093e52  0000 lsl r0, r0, #0x00
+08093e54  6888 ldr r0, [r1, #0x8]
+08093e56  189b add r3, r3, r2
+08093e58  18a4 add r4, r4, r2
+08093e5a  1aad sub r5, r5, r2
+08093e5c  4295 cmp r5, r2
+08093e5e  d8f6 bhi $08093e4e
+08093e60  600b str r3, [r1, #0x0]
+08093e62  604c str r4, [r1, #0x4]
+08093e64  0868 lsr r0, r5, #0x01
+08093e66  4338 orr r0, r7
+08093e68  6088 str r0, [r1, #0x8]
+08093e6a  6888 ldr r0, [r1, #0x8]
+08093e6c  4909 ldr r1, [$08093e94] (=$083b5ab8)
+08093e6e  4a0a ldr r2, [$08093e98] (=$06002800)
+08093e70  4806 ldr r0, [$08093e8c] (=$040000d4)
+08093e72  6001 str r1, [r0, #0x0]
+08093e74  6042 str r2, [r0, #0x4]
+08093e76  4909 ldr r1, [$08093e9c] (=$80000200)
+08093e78  6081 str r1, [r0, #0x8]
+08093e7a  6880 ldr r0, [r0, #0x8]
+08093e7c  bcf0 pop {r4-r7}
+08093e7e  bc01 pop {r0}
+08093e80  4700 bx r0
+08093e82  0000 lsl r0, r0, #0x00
+
+Routine at 0x800000:
+--------------------
+@ Trainer Card Tileset and Badge Loading Routine
+@ By ZodiacDaGreat
+@ Version 1.0.0
+@ ----------------------------------------------
+.code 16
+.thumb
+
+.Main:
+	ldr r0, .CompressedTileset
+	ldr r1, .VRAM
+	swi 0x12
+
+	ldr r1, .REG_DMA3SAD
+	ldr r6, .DMA2PARA
+	mov r2, #0x80
+	lsl r2, r2, #0x5
+	mov r7, #0x80
+	lsl r7, r7, #0x18
+
+	ldr r0, .ReturnAddress
+	bx r0
+
+@ ----------------------------------------------
+.align 2
+.CompressedTileset:
+.word 0x08900000
+.VRAM:
+.word 0x06000000
+.REG_DMA3SAD:
+.word 0x040000D4
+.DMA2PARA:
+.word 0x80000800
+.ReturnAddress:
+.word 0x08093E55
+
+Hack 2 - Editing the Brendan/May loading destination
+====================================================
+Routine:
+08093ef8  b500 push {lr}
+08093efa  4804 ldr r0, [$08093f0c] (=$02000000)
+08093efc  3064 add r0, #0x64
+08093efe  7800 ldrb r0, [r0, #0x0]
+08093f00  4a03 ldr r2, [$08093f10] (=$06001880) @ This must change ^ ^ to 06001C40
+08093f02  2150 mov r1, #0x50
+08093f04  f7f1 bl $08085a5c
+08093f08  bc01 pop {r0}
+08093f0a  4700 bx r0
+08093f0c  0000 lsl r0, r0, #0x00
+
+put 401C0006 at 0x93F10, reversed becomes 06001c40 ^^
+
+Insert E02E 0006  at 0x93F10
+
+Hack 3 - Editing the Brendan/May Beginning Tile Number
+======================================================
+Routine:
+08093f80  b5f0 push {r4-r7,lr}
+08093f82  25c4 mov r5, #0xc4 @ 0xC4 needs to be changed to the new tile number
+08093f84  4f11 ldr r7, [$08093fcc] (=$06004000)
+08093f86  2105 mov r1, #0x5
+
+The new tile number if you did Hack 2, it should be 225 or 0xE1. To hack it place: E125 at 0x93F82
+
+Hack 4 - Editing Badge Tiledata
+===============================
+It is located at 0x3b5f8c. Found in this routine:
+08094054  4f20 ldr r7, [$080940d8] (=$083b5f8c) @ Pointer to Badge Tiledata
+08094056  21c0 mov r1, #0xc0
+
+For easy editing just copy the file Edited Badge data to the offset :) A total of 0x40 bytes.
+
+Hack 5 - Editing the Badges Position
+====================================
+Next is a series simple hacks to shift the badge data down - a wee bit of math is done, as the original badge data on the map in BG1 starts at 0x60043C8 but since we need to shift it down, the address we need is 0x6004448. In the routine, to get 0x60043C8, 0x3C0 is added to 0x6004008. We just need to modify the value added to the pointer ;) So, the value is 0x400.
+
+Routine:
+1st:
+08094074  22f0 mov r2, #0xf0 @ r2 needs to be edited
+08094076  0092 lsl r2, r2, #0x02
+08094078  188b add r3, r1, r2
+0809407a  00e2 lsl r2, r4, #0x03
+0809407c  19d0 add r0, r2, r7
+0809407e  8800 ldrh r0, [r0, #0x0]
+08094080  4330 orr r0, r6
+08094082  8018 strh r0, [r3, #0x0]
+
+In the routine, r2 holds the value to be added, we just need to change that. So, just this will do:
+mov r2, #0x2
+lsl r2, r2, #0x9
+
+Lol, I thought we were done, but actually there are another 3 parts to modify so to keep it simple - a total of 4. I've listed down all the parts to edit:
+
+2nd:
+08094084  4815 ldr r0, [$080940dc] (=$000003c2) @ needs to be edited
+
+3rd:
+08094092  2080 mov r0, #0x80 @ r0 needs to be edited
+08094094  00c0 lsl r0, r0, #0x03
+08094096  180b add r3, r1, r0
+08094098  1d38 add r0, r7, #0x4
+0809409a  1810 add r0, r2, r0
+0809409c  8800 ldrh r0, [r0, #0x0]
+0809409e  4330 orr r0, r6
+080940a0  8018 strh r0, [r3, #0x0]
+
+4th:
+080940a2  480f ldr r0, [$080940e0] (=$00000402) @ needs to be edited
+
+In short, to change the positions, do these:
+1)insert 0222 5202 at 0x94074
+2)insert 0204 0000 at 0x940DC
+3)insert 1120 8001 at 0x94092
+4)insert 4204 0000 at 0x940E0
+
+Hack 6 - Editing the Star Palette
+=================================
+This is the simplest hack heheh, just change only the value :P Here's the routine.
+08093fe4  4913 ldr r1, [$08094034] (=$0000408f) @ This value ^^
+08093fe6  1c0d add r5, r1, #0x0
+
+What does that value mean? It is 0x4000 OR 0x8F. 0x8F being the tilenumber and 0x4000 being the palette. So, since it's already 0x8F we just need to modify the palette value to the palette index that has its color. For me, I'll use palette 1 so I'll change the value to 0x108F ^^
+
+So just insert 8F100000 at 0x94034.
+
+Hack 7 - Editing the Star Position
+==================================
+Here we have to do a bit of Math. Since the original position or location of the star is at 0x0600419E and after analysing a routine I found that to get 0x0600419E it added 0x180 to it first to get that value. So here's the trick. We subtract 0x180 from 0x600419E thus getting 0x600401E. Using this way I cannot guarrantee you'll be able to move the star anywhere XD but it shouldn't be hard to move it down ^^ I decided my new location to be at 0x60041DE. Here's the math part.
+
+0x60041DE - 0x600419E = 0x40, We have to add 0x40 to 0x180 which is 0x1C0 => Means the difference is only forty bytes. So in the routine:
+08093fe0  26c0 mov r6, #0xc0
+08093fe2  0076 lsl r6, r6, #0x01
+
+We just need to modify the routine so that after execution r6 should equal to 0x1C0. Left shifting 0x1C0 to 0x5 is 0xE. Modifying it a bit I get the new part:
+mov r6, #0xE
+lsl r6, r6, #0x5
+
+The bytes are 0E26 7601 just insert it at 0x93FE0. Haha! Yeah! We did it.
+
+Hack 8 - Loading of Player's Name
+==================================
+The player's name is stored in the memory offset 02024EA4.

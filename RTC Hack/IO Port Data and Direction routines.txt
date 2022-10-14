@@ -1,0 +1,1020 @@
+@ RS RTC Routines (I/O Port Data and Direction)
+@ ----------------------------------------------------
+
+@ ----------------------------------------------------
+081e0020  b580 push {r7,lr}
+081e0022  b084 add sp, -#0x10
+081e0024  466f mov r7, sp
+081e0026  4803 ldr r0, [$081e0034] (=$03000f36) @ IWRAM location for either 0x1 or 0x0?
+081e0028  7801 ldrb r1, [r0, #0x0]
+081e002a  2901 cmp r1, #0x1
+081e002c  d104 bne $081e0038
+081e002e  2000 mov r0, #0x0
+081e0030  e034 b $081e009c
+
+081e0032  0000 lsl r0, r0, #0x00
+081e0034  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0036  0300 lsl r0, r0, #0x0c
+
+081e0038  4815 ldr r0, [$081e0090] (=$03000f36) @ IWRAM location for either 0x1 or 0x0?
+081e003a  2101 mov r1, #0x1
+081e003c  7001 strb r1, [r0, #0x0]
+081e003e  4815 ldr r0, [$081e0094] (=$080000c4)
+081e0040  2101 mov r1, #0x1
+081e0042  8001 strh r1, [r0, #0x0]
+081e0044  4813 ldr r0, [$081e0094] (=$080000c4)
+081e0046  2105 mov r1, #0x5
+081e0048  8001 strh r1, [r0, #0x0]
+081e004a  4813 ldr r0, [$081e0098] (=$080000c6)
+081e004c  2107 mov r1, #0x7
+081e004e  8001 strh r1, [r0, #0x0]
+081e0050  2060 mov r0, #0x60
+081e0052  f000 bl $081e05e8
+081e0056  480f ldr r0, [$081e0094] (=$080000c4)
+081e0058  2101 mov r1, #0x1
+081e005a  8001 strh r1, [r0, #0x0]
+081e005c  480d ldr r0, [$081e0094] (=$080000c4)
+081e005e  2101 mov r1, #0x1
+081e0060  8001 strh r1, [r0, #0x0]
+081e0062  480b ldr r0, [$081e0090] (=$03000f36) @ IWRAM location for either 0x1 or 0x0?
+081e0064  2100 mov r1, #0x0
+081e0066  7001 strb r1, [r0, #0x0]
+081e0068  1d38 add r0, r7, #0x4
+081e006a  79c1 ldrb r1, [r0, #0x7]
+081e006c  2200 mov r2, #0x0
+081e006e  4011 and r1, r2
+081e0070  1c0a add r2, r1, #0x0
+081e0072  2340 mov r3, #0x40
+081e0074  1c11 add r1, r2, #0x0
+081e0076  4319 orr r1, r3
+081e0078  1c0a add r2, r1, #0x0
+081e007a  71c2 strb r2, [r0, #0x7]
+081e007c  1d39 add r1, r7, #0x4
+081e007e  1c08 add r0, r1, #0x0
+081e0080  f000 bl $081e0170
+081e0084  1c39 add r1, r7, #0x0
+081e0086  7008 strb r0, [r1, #0x0]
+081e0088  1c38 add r0, r7, #0x0
+081e008a  7801 ldrb r1, [r0, #0x0]
+081e008c  1c08 add r0, r1, #0x0
+081e008e  e005 b $081e009c
+
+081e0090  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0092  0300 lsl r0, r0, #0x0c
+081e0092  0300 lsl r0, r0, #0x0c
+081e0094  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0096  0800 lsr r0, r0, #0x00
+081e0098  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e009a  0800 lsr r0, r0, #0x00
+
+081e009c  b004 add sp, #0x10
+081e009e  bc80 pop {r7}
+081e00a0  bc02 pop {r1}
+081e00a2  4708 bx r1
+
+@ ----------------------------------------------------
+081e00a4  b590 push {r4,r7,lr}
+081e00a6  b082 add sp, -#0x8
+081e00a8  466f mov r7, sp
+081e00aa  6038 str r0, [r7, #0x0]
+081e00ac  4802 ldr r0, [$081e00b8] (=$03000f36)
+081e00ae  7801 ldrb r1, [r0, #0x0]
+081e00b0  2901 cmp r1, #0x1
+081e00b2  d103 bne $081e00bc
+081e00b4  2000 mov r0, #0x0
+081e00b6  e057 b $081e0168
+
+081e00b8  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e00ba  0300 lsl r0, r0, #0x0c
+
+081e00bc  4827 ldr r0, [$081e015c] (=$03000f36)
+081e00be  2101 mov r1, #0x1
+081e00c0  7001 strb r1, [r0, #0x0]
+081e00c2  4827 ldr r0, [$081e0160] (=$080000c4)
+081e00c4  2101 mov r1, #0x1
+081e00c6  8001 strh r1, [r0, #0x0] @ Writes 0x1 to 0x080000C4
+081e00c8  4825 ldr r0, [$081e0160] (=$080000c4)
+081e00ca  2105 mov r1, #0x5
+081e00cc  8001 strh r1, [r0, #0x0] @ Writes 0x5 to 0x080000C4
+081e00ce  4825 ldr r0, [$081e0164] (=$080000c6)
+081e00d0  2107 mov r1, #0x7
+081e00d2  8001 strh r1, [r0, #0x0] @ Writes 0x7 to 0x080000C4
+081e00d4  2063 mov r0, #0x63
+081e00d6  f000 bl $081e05e8
+081e00da  4822 ldr r0, [$081e0164] (=$080000c6)
+081e00dc  2105 mov r1, #0x5
+081e00de  8001 strh r1, [r0, #0x0]
+081e00e0  f000 bl $081e072c
+081e00e4  1d39 add r1, r7, #0x4
+081e00e6  7008 strb r0, [r1, #0x0]
+081e00e8  6838 ldr r0, [r7, #0x0]
+081e00ea  1d39 add r1, r7, #0x4
+081e00ec  780a ldrb r2, [r1, #0x0]
+081e00ee  23c0 mov r3, #0xc0
+081e00f0  1c11 add r1, r2, #0x0
+081e00f0  1c11 add r1, r2, #0x0
+081e00f2  4019 and r1, r3
+081e00f4  1d3a add r2, r7, #0x4
+081e00f6  7813 ldrb r3, [r2, #0x0]
+081e00f8  2420 mov r4, #0x20
+081e00fa  1c1a add r2, r3, #0x0
+081e00fc  4022 and r2, r4
+081e00fe  1c14 add r4, r2, #0x0
+081e0100  0623 lsl r3, r4, #0x18
+081e0102  0e1a lsr r2, r3, #0x18
+081e0104  08d3 lsr r3, r2, #0x03
+081e0106  1c1a add r2, r3, #0x0
+081e0108  4311 orr r1, r2
+081e010a  1d3a add r2, r7, #0x4
+081e010c  7813 ldrb r3, [r2, #0x0]
+081e010e  2408 mov r4, #0x8
+081e0110  1c1a add r2, r3, #0x0
+081e0112  4022 and r2, r4
+081e0114  1c14 add r4, r2, #0x0
+081e0116  0623 lsl r3, r4, #0x18
+081e0118  0e1a lsr r2, r3, #0x18
+081e011a  0893 lsr r3, r2, #0x02
+081e011c  1c1a add r2, r3, #0x0
+081e011e  4311 orr r1, r2
+081e0120  1d3a add r2, r7, #0x4
+081e0122  7813 ldrb r3, [r2, #0x0]
+081e0124  2402 mov r4, #0x2
+081e0126  1c1a add r2, r3, #0x0
+081e0128  4022 and r2, r4
+081e012a  1c14 add r4, r2, #0x0
+081e012c  0623 lsl r3, r4, #0x18
+081e012e  0e1a lsr r2, r3, #0x18
+081e0130  0853 lsr r3, r2, #0x01
+081e0132  1c1a add r2, r3, #0x0
+081e0134  4311 orr r1, r2
+081e0136  79c2 ldrb r2, [r0, #0x7]
+081e0138  2300 mov r3, #0x0
+081e013a  401a and r2, r3
+081e013c  1c13 add r3, r2, #0x0
+081e013e  1c1a add r2, r3, #0x0
+081e0140  430a orr r2, r1
+081e0142  1c11 add r1, r2, #0x0
+081e0144  71c1 strb r1, [r0, #0x7]
+081e0146  4806 ldr r0, [$081e0160] (=$080000c4)
+081e0148  2101 mov r1, #0x1
+081e014a  8001 strh r1, [r0, #0x0]
+081e014c  4804 ldr r0, [$081e0160] (=$080000c4)
+081e014e  2101 mov r1, #0x1
+081e0150  8001 strh r1, [r0, #0x0]
+081e0152  4802 ldr r0, [$081e015c] (=$03000f36)
+081e0154  2100 mov r1, #0x0
+081e0156  7001 strb r1, [r0, #0x0]
+081e0158  2001 mov r0, #0x1
+081e015a  e005 b $081e0168
+
+081e015c  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e015e  0300 lsl r0, r0, #0x0c
+081e0160  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0162  0800 lsr r0, r0, #0x00
+081e0164  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e0166  0800 lsr r0, r0, #0x00
+
+081e0168  b002 add sp, #0x8
+081e016a  bc90 pop {r4,r7}
+081e016c  bc02 pop {r1}
+081e016e  4708 bx r1
+
+@ ----------------------------------------------------
+081e0170  b590 push {r4,r7,lr}
+081e0172  b082 add sp, -#0x8
+081e0174  466f mov r7, sp
+081e0176  6038 str r0, [r7, #0x0]
+081e0178  4802 ldr r0, [$081e0184] (=$03000f36)
+081e017a  7801 ldrb r1, [r0, #0x0]
+081e017c  2901 cmp r1, #0x1
+081e017e  d103 bne $081e0188
+081e0180  2000 mov r0, #0x0
+081e0182  e045 b $081e0210
+081e0184  0f36 lsr r6, r6, #0x1c
+081e0186  0300 lsl r0, r0, #0x0c
+081e0188  481e ldr r0, [$081e0204] (=$03000f36)
+081e018a  2101 mov r1, #0x1
+081e018c  7001 strb r1, [r0, #0x0]
+081e018e  481e ldr r0, [$081e0208] (=$080000c4)
+081e0190  2101 mov r1, #0x1
+081e0192  8001 strh r1, [r0, #0x0]
+081e0194  481c ldr r0, [$081e0208] (=$080000c4)
+081e0196  2105 mov r1, #0x5
+081e0198  8001 strh r1, [r0, #0x0]
+081e019a  1d38 add r0, r7, #0x4
+081e019c  6839 ldr r1, [r7, #0x0]
+081e019e  79ca ldrb r2, [r1, #0x7]
+081e01a0  2304 mov r3, #0x4
+081e01a2  1c11 add r1, r2, #0x0
+081e01a4  4019 and r1, r3
+081e01a6  1c0a add r2, r1, #0x0
+081e01a8  00d1 lsl r1, r2, #0x03
+081e01aa  683a ldr r2, [r7, #0x0]
+081e01ac  79d3 ldrb r3, [r2, #0x7]
+081e01ae  2402 mov r4, #0x2
+081e01b0  1c1a add r2, r3, #0x0
+081e01b2  4022 and r2, r4
+081e01b4  1c13 add r3, r2, #0x0
+081e01b6  009a lsl r2, r3, #0x02
+081e01b8  1c13 add r3, r2, #0x0
+081e01ba  2440 mov r4, #0x40
+081e01bc  1c1a add r2, r3, #0x0
+081e01be  4322 orr r2, r4
+081e01c0  4311 orr r1, r2
+081e01c2  683a ldr r2, [r7, #0x0]
+081e01c4  79d3 ldrb r3, [r2, #0x7]
+081e01c6  2401 mov r4, #0x1
+081e01c8  1c1a add r2, r3, #0x0
+081e01ca  4022 and r2, r4
+081e01cc  1c13 add r3, r2, #0x0
+081e01ce  005a lsl r2, r3, #0x01
+081e01d0  4311 orr r1, r2
+081e01d2  1c0a add r2, r1, #0x0
+081e01d4  7002 strb r2, [r0, #0x0]
+081e01d6  480d ldr r0, [$081e020c] (=$080000c6)
+081e01d8  2107 mov r1, #0x7
+081e01da  8001 strh r1, [r0, #0x0]
+081e01dc  2062 mov r0, #0x62
+081e01de  f000 bl $081e05e8
+081e01e2  1d38 add r0, r7, #0x4
+081e01e4  7801 ldrb r1, [r0, #0x0]
+081e01e6  1c08 add r0, r1, #0x0
+081e01e8  f000 bl $081e068c
+081e01ec  4806 ldr r0, [$081e0208] (=$080000c4)
+081e01ee  2101 mov r1, #0x1
+081e01f0  8001 strh r1, [r0, #0x0]
+081e01f2  4805 ldr r0, [$081e0208] (=$080000c4)
+081e01f4  2101 mov r1, #0x1
+081e01f6  8001 strh r1, [r0, #0x0]
+081e01f8  4802 ldr r0, [$081e0204] (=$03000f36)
+081e01fa  2100 mov r1, #0x0
+081e01fc  7001 strb r1, [r0, #0x0]
+081e01fe  2001 mov r0, #0x1
+081e0200  e006 b $081e0210
+
+081e0202  0000 lsl r0, r0, #0x00
+081e0204  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0206  0300 lsl r0, r0, #0x0c 
+081e0208  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e020a  0800 lsr r0, r0, #0x00
+081e020c  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e020e  0800 lsr r0, r0, #0x00
+
+081e0210  b002 add sp, #0x8
+081e0212  bc90 pop {r4,r7}
+081e0214  bc02 pop {r1}
+081e0216  4708 bx r1
+
+@ ----------------------------------------------------
+081e0218  b580 push {r7,lr}
+081e021a  b082 add sp, -#0x8
+081e021c  466f mov r7, sp
+081e021e  6038 str r0, [r7, #0x0]
+081e0220  4802 ldr r0, [$081e022c] (=$03000f36)
+081e0222  7801 ldrb r1, [r0, #0x0]
+081e0224  2901 cmp r1, #0x1
+081e0226  d103 bne $081e0230
+081e0228  2000 mov r0, #0x0
+081e022a  e049 b $081e02c0
+081e022c  0f36 lsr r6, r6, #0x1c
+081e022e  0300 lsl r0, r0, #0x0c
+081e0230  480c ldr r0, [$081e0264] (=$03000f36)
+081e0232  2101 mov r1, #0x1
+081e0234  7001 strb r1, [r0, #0x0]
+081e0236  480c ldr r0, [$081e0268] (=$080000c4)
+081e0238  2101 mov r1, #0x1
+081e023a  8001 strh r1, [r0, #0x0]
+081e023c  480a ldr r0, [$081e0268] (=$080000c4)
+081e023e  2105 mov r1, #0x5
+081e0240  8001 strh r1, [r0, #0x0]
+081e0242  480a ldr r0, [$081e026c] (=$080000c6)
+081e0244  2107 mov r1, #0x7
+081e0246  8001 strh r1, [r0, #0x0]
+081e0248  2065 mov r0, #0x65
+081e024a  f000 bl $081e05e8
+081e024e  4807 ldr r0, [$081e026c] (=$080000c6)
+081e0250  2105 mov r1, #0x5
+081e0252  8001 strh r1, [r0, #0x0]
+081e0254  1d38 add r0, r7, #0x4
+081e0256  2100 mov r1, #0x0
+081e0258  7001 strb r1, [r0, #0x0]
+081e025a  1d38 add r0, r7, #0x4
+081e025c  7801 ldrb r1, [r0, #0x0]
+081e025e  2906 cmp r1, #0x6
+081e0260  d906 bls $081e0270
+081e0262  e014 b $081e028e
+
+081e0264  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0266  0300 lsl r0, r0, #0x0c
+081e0268  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e026a  0800 lsr r0, r0, #0x00
+081e026c  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e026e  0800 lsr r0, r0, #0x00
+
+081e0270  f000 bl $081e072c
+081e0274  1d39 add r1, r7, #0x4
+081e0276  780a ldrb r2, [r1, #0x0]
+081e0278  683b ldr r3, [r7, #0x0]
+081e027a  18d1 add r1, r2, r3
+081e027c  7008 strb r0, [r1, #0x0]
+081e027e  1d39 add r1, r7, #0x4
+081e0280  1d38 add r0, r7, #0x4
+081e0282  1d39 add r1, r7, #0x4
+081e0284  780a ldrb r2, [r1, #0x0]
+081e0286  1c51 add r1, r2, #0x1
+081e0288  1c0a add r2, r1, #0x0
+081e028a  7002 strb r2, [r0, #0x0]
+081e028c  e7e5 b $081e025a
+081e028e  6839 ldr r1, [r7, #0x0]
+081e0290  1d08 add r0, r1, #0x4
+081e0292  683a ldr r2, [r7, #0x0]
+081e0294  1d11 add r1, r2, #0x4
+081e0296  780a ldrb r2, [r1, #0x0]
+081e0298  237f mov r3, #0x7f
+081e029a  1c11 add r1, r2, #0x0
+081e029c  4019 and r1, r3
+081e029e  1c0a add r2, r1, #0x0
+081e02a0  7002 strb r2, [r0, #0x0]
+081e02a2  4805 ldr r0, [$081e02b8] (=$080000c4)
+081e02a4  2101 mov r1, #0x1
+081e02a6  8001 strh r1, [r0, #0x0]
+081e02a8  4803 ldr r0, [$081e02b8] (=$080000c4)
+081e02aa  2101 mov r1, #0x1
+081e02ac  8001 strh r1, [r0, #0x0]
+081e02ae  4803 ldr r0, [$081e02bc] (=$03000f36)
+081e02b0  2100 mov r1, #0x0
+081e02b2  7001 strb r1, [r0, #0x0]
+081e02b4  2001 mov r0, #0x1
+081e02b6  e003 b $081e02c0
+
+081e02b8  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e02ba  0800 lsr r0, r0, #0x00
+081e02bc  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e02be  0300 lsl r0, r0, #0x0c
+
+081e02c0  b002 add sp, #0x8
+081e02c2  bc80 pop {r7}
+081e02c4  bc02 pop {r1}
+
+@ ----------------------------------------------------
+081e02c8  b580 push {r7,lr}
+081e02ca  b082 add sp, -#0x8
+081e02cc  466f mov r7, sp
+081e02ce  6038 str r0, [r7, #0x0]
+081e02d0  4802 ldr r0, [$081e02dc] (=$03000f36)
+081e02d2  7801 ldrb r1, [r0, #0x0]
+081e02d4  2901 cmp r1, #0x1
+081e02d6  d103 bne $081e02e0
+081e02d8  2000 mov r0, #0x0
+081e02da  e03f b $081e035c
+081e02dc  0f36 lsr r6, r6, #0x1c
+081e02de  0300 lsl r0, r0, #0x0c
+081e02e0  480b ldr r0, [$081e0310] (=$03000f36)
+081e02e2  2101 mov r1, #0x1
+081e02e4  7001 strb r1, [r0, #0x0]
+081e02e6  480b ldr r0, [$081e0314] (=$080000c4)
+081e02e8  2101 mov r1, #0x1
+081e02ea  8001 strh r1, [r0, #0x0]
+081e02ec  4809 ldr r0, [$081e0314] (=$080000c4)
+081e02ee  2105 mov r1, #0x5
+081e02f0  8001 strh r1, [r0, #0x0]
+081e02f2  4809 ldr r0, [$081e0318] (=$080000c6)
+081e02f4  2107 mov r1, #0x7
+081e02f6  8001 strh r1, [r0, #0x0]
+081e02f8  2064 mov r0, #0x64
+081e02fa  f000 bl $081e05e8
+081e02fe  1d38 add r0, r7, #0x4
+081e0300  2100 mov r1, #0x0
+081e0302  7001 strb r1, [r0, #0x0]
+081e0304  1d38 add r0, r7, #0x4
+081e0306  7801 ldrb r1, [r0, #0x0]
+081e0308  2906 cmp r1, #0x6
+081e030a  d907 bls $081e031c
+081e030c  e016 b $081e033c
+
+081e030e  0000 lsl r0, r0, #0x00
+081e0310  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0312  0300 lsl r0, r0, #0x0c
+081e0314  00c4 lsl r4, r0, #0x03
+081e0314  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0316  0800 lsr r0, r0, #0x00
+081e0318  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e031a  0800 lsr r0, r0, #0x00
+
+081e031c  1d38 add r0, r7, #0x4
+081e031e  7801 ldrb r1, [r0, #0x0]
+081e0320  683a ldr r2, [r7, #0x0]
+081e0322  1888 add r0, r1, r2
+081e0324  7801 ldrb r1, [r0, #0x0]
+081e0326  1c08 add r0, r1, #0x0
+081e0328  f000 bl $081e068c
+081e032c  1d39 add r1, r7, #0x4
+081e032e  1d38 add r0, r7, #0x4
+081e0330  1d39 add r1, r7, #0x4
+081e0332  780a ldrb r2, [r1, #0x0]
+081e0334  1c51 add r1, r2, #0x1
+081e0336  1c0a add r2, r1, #0x0
+081e0338  7002 strb r2, [r0, #0x0]
+081e033a  e7e3 b $081e0304
+081e033a  e7e3 b $081e0304
+081e033c  4805 ldr r0, [$081e0354] (=$080000c4)
+081e033e  2101 mov r1, #0x1
+081e0340  8001 strh r1, [r0, #0x0]
+081e0342  4804 ldr r0, [$081e0354] (=$080000c4)
+081e0344  2101 mov r1, #0x1
+081e0346  8001 strh r1, [r0, #0x0]
+081e0348  4803 ldr r0, [$081e0358] (=$03000f36)
+081e034a  2100 mov r1, #0x0
+081e034c  7001 strb r1, [r0, #0x0]
+081e034e  2001 mov r0, #0x1
+081e0350  e004 b $081e035c
+
+081e0352  0000 lsl r0, r0, #0x00
+081e0354  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0356  0800 lsr r0, r0, #0x00
+081e0358  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e035a  0300 lsl r0, r0, #0x0c
+
+081e035c  b002 add sp, #0x8
+081e035e  bc80 pop {r7}
+081e0360  bc02 pop {r1}
+081e0360  bc02 pop {r1}
+081e0362  4708 bx r1
+
+@ ----------------------------------------------------
+081e0364  b580 push {r7,lr}
+081e0366  b082 add sp, -#0x8
+081e0368  466f mov r7, sp
+081e036a  6038 str r0, [r7, #0x0]
+081e036c  4802 ldr r0, [$081e0378] (=$03000f36)
+081e036e  7801 ldrb r1, [r0, #0x0]
+081e0370  2901 cmp r1, #0x1
+081e0372  d103 bne $081e037c
+081e0374  2000 mov r0, #0x0
+081e0376  e04b b $081e0410
+081e0378  0f36 lsr r6, r6, #0x1c
+081e037a  0300 lsl r0, r0, #0x0c
+081e037c  480c ldr r0, [$081e03b0] (=$03000f36)
+081e037e  2101 mov r1, #0x1
+081e0380  7001 strb r1, [r0, #0x0]
+081e0382  480c ldr r0, [$081e03b4] (=$080000c4)
+081e0384  2101 mov r1, #0x1
+081e0386  8001 strh r1, [r0, #0x0]
+081e0388  480a ldr r0, [$081e03b4] (=$080000c4)
+081e038a  2105 mov r1, #0x5
+081e038c  8001 strh r1, [r0, #0x0]
+081e038e  480a ldr r0, [$081e03b8] (=$080000c6)
+081e0390  2107 mov r1, #0x7
+081e0392  8001 strh r1, [r0, #0x0]
+081e0394  2067 mov r0, #0x67
+081e0396  f000 bl $081e05e8
+081e039a  4807 ldr r0, [$081e03b8] (=$080000c6)
+081e039c  2105 mov r1, #0x5
+081e039e  8001 strh r1, [r0, #0x0]
+081e03a0  1d38 add r0, r7, #0x4
+081e03a2  2100 mov r1, #0x0
+081e03a4  7001 strb r1, [r0, #0x0]
+081e03a6  1d38 add r0, r7, #0x4
+081e03a8  7801 ldrb r1, [r0, #0x0]
+081e03aa  2902 cmp r1, #0x2
+081e03ac  d906 bls $081e03bc
+081e03ae  e015 b $081e03dc
+
+081e03b0  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e03b2  0300 lsl r0, r0, #0x0c
+081e03b4  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e03b6  0800 lsr r0, r0, #0x00
+081e03b8  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e03ba  0800 lsr r0, r0, #0x00
+
+081e03bc  f000 bl $081e072c
+081e03c0  1d39 add r1, r7, #0x4
+081e03c2  780a ldrb r2, [r1, #0x0]
+081e03c4  683b ldr r3, [r7, #0x0]
+081e03c6  18d1 add r1, r2, r3
+081e03c8  1d0a add r2, r1, #0x4
+081e03ca  7010 strb r0, [r2, #0x0]
+081e03cc  1d39 add r1, r7, #0x4
+081e03ce  1d38 add r0, r7, #0x4
+081e03d0  1d39 add r1, r7, #0x4
+081e03d2  780a ldrb r2, [r1, #0x0]
+081e03d4  1c51 add r1, r2, #0x1
+081e03d6  1c0a add r2, r1, #0x0
+081e03d8  7002 strb r2, [r0, #0x0]
+081e03da  e7e4 b $081e03a6
+081e03dc  6839 ldr r1, [r7, #0x0]
+081e03de  1d08 add r0, r1, #0x4
+081e03e0  683a ldr r2, [r7, #0x0]
+081e03e2  1d11 add r1, r2, #0x4
+081e03e4  780a ldrb r2, [r1, #0x0]
+081e03e6  237f mov r3, #0x7f
+081e03e8  1c11 add r1, r2, #0x0
+081e03ea  4019 and r1, r3
+081e03ec  1c0a add r2, r1, #0x0
+081e03ee  7002 strb r2, [r0, #0x0]
+081e03f0  4805 ldr r0, [$081e0408] (=$080000c4)
+081e03f2  2101 mov r1, #0x1
+081e03f4  8001 strh r1, [r0, #0x0]
+081e03f6  4804 ldr r0, [$081e0408] (=$080000c4)
+081e03f8  2101 mov r1, #0x1
+081e03fa  8001 strh r1, [r0, #0x0]
+081e03fc  4803 ldr r0, [$081e040c] (=$03000f36)
+081e03fe  2100 mov r1, #0x0
+081e0400  7001 strb r1, [r0, #0x0]
+081e0402  2001 mov r0, #0x1
+081e0404  e004 b $081e0410
+
+081e0406  0000 lsl r0, r0, #0x00
+081e0408  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e040a  0800 lsr r0, r0, #0x00
+081e040c  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e040e  0300 lsl r0, r0, #0x0c
+
+081e0410  b002 add sp, #0x8
+081e0412  bc80 pop {r7}
+081e0414  bc02 pop {r1}
+081e0416  4708 bx r1
+
+@ ----------------------------------------------------
+081e0418  b580 push {r7,lr}
+081e041a  b082 add sp, -#0x8
+081e041c  466f mov r7, sp
+081e041e  6038 str r0, [r7, #0x0]
+081e0420  4802 ldr r0, [$081e042c] (=$03000f36)
+081e0422  7801 ldrb r1, [r0, #0x0]
+081e0424  2901 cmp r1, #0x1
+081e0426  d103 bne $081e0430
+081e0428  2000 mov r0, #0x0
+081e042a  e03f b $081e04ac
+081e042c  0f36 lsr r6, r6, #0x1c
+081e042e  0300 lsl r0, r0, #0x0c
+081e0430  480b ldr r0, [$081e0460] (=$03000f36)
+081e0432  2101 mov r1, #0x1
+081e0434  7001 strb r1, [r0, #0x0]
+081e0436  480b ldr r0, [$081e0464] (=$080000c4)
+081e0438  2101 mov r1, #0x1
+081e043a  8001 strh r1, [r0, #0x0]
+081e043c  4809 ldr r0, [$081e0464] (=$080000c4)
+081e043e  2105 mov r1, #0x5
+081e0440  8001 strh r1, [r0, #0x0]
+081e0442  4809 ldr r0, [$081e0468] (=$080000c6)
+081e0444  2107 mov r1, #0x7
+081e0446  8001 strh r1, [r0, #0x0]
+081e0448  2066 mov r0, #0x66
+081e044a  f000 bl $081e05e8
+081e044e  1d38 add r0, r7, #0x4
+081e0450  2100 mov r1, #0x0
+081e0452  7001 strb r1, [r0, #0x0]
+081e0454  1d38 add r0, r7, #0x4
+081e0456  7801 ldrb r1, [r0, #0x0]
+081e0458  2902 cmp r1, #0x2
+081e045a  d907 bls $081e046c
+081e045c  e017 b $081e048e
+
+081e045e  0000 lsl r0, r0, #0x00
+081e0460  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0462  0300 lsl r0, r0, #0x0c
+081e0464  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0466  0800 lsr r0, r0, #0x00
+081e0468  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e046a  0800 lsr r0, r0, #0x00
+
+081e046c  1d38 add r0, r7, #0x4
+081e046e  7801 ldrb r1, [r0, #0x0]
+081e0470  683a ldr r2, [r7, #0x0]
+081e0472  1888 add r0, r1, r2
+081e0474  1d01 add r1, r0, #0x4
+081e0476  780a ldrb r2, [r1, #0x0]
+081e0478  1c10 add r0, r2, #0x0
+081e047a  f000 bl $081e068c
+081e047e  1d39 add r1, r7, #0x4
+081e0480  1d38 add r0, r7, #0x4
+081e0482  1d39 add r1, r7, #0x4
+081e0484  780a ldrb r2, [r1, #0x0]
+081e0486  1c51 add r1, r2, #0x1
+081e0488  1c0a add r2, r1, #0x0
+081e048a  7002 strb r2, [r0, #0x0]
+081e048c  e7e2 b $081e0454
+081e048e  4805 ldr r0, [$081e04a4] (=$080000c4)
+081e0490  2101 mov r1, #0x1
+081e0492  8001 strh r1, [r0, #0x0]
+081e0494  4803 ldr r0, [$081e04a4] (=$080000c4)
+081e0496  2101 mov r1, #0x1
+081e0498  8001 strh r1, [r0, #0x0]
+081e049a  4803 ldr r0, [$081e04a8] (=$03000f36)
+081e049c  2100 mov r1, #0x0
+081e049e  7001 strb r1, [r0, #0x0]
+081e04a0  2001 mov r0, #0x1
+081e04a2  e003 b $081e04ac
+
+081e04a4  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e04a6  0800 lsr r0, r0, #0x00
+081e04a8  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e04aa  0300 lsl r0, r0, #0x0c
+
+081e04ac  b002 add sp, #0x8
+081e04ae  bc80 pop {r7}
+081e04b0  bc02 pop {r1}
+081e04b2  4708 bx r1
+
+@ ----------------------------------------------------
+081e04b4  b590 push {r4,r7,lr}
+081e04b6  b083 add sp, -#0xc
+081e04b8  466f mov r7, sp
+081e04ba  6038 str r0, [r7, #0x0]
+081e04bc  4802 ldr r0, [$081e04c8] (=$03000f36)
+081e04be  7801 ldrb r1, [r0, #0x0]
+081e04c0  2901 cmp r1, #0x1
+081e04c2  d103 bne $081e04cc
+081e04c4  2000 mov r0, #0x0
+081e04c6  e08b b $081e05e0
+081e04c8  0f36 lsr r6, r6, #0x1c
+081e04ca  0300 lsl r0, r0, #0x0c
+081e04cc  4819 ldr r0, [$081e0534] (=$03000f36)
+081e04ce  2101 mov r1, #0x1
+081e04d0  7001 strb r1, [r0, #0x0]
+081e04d2  1c38 add r0, r7, #0x0
+081e04d4  3008 add r0, #0x8
+081e04d6  6839 ldr r1, [r7, #0x0]
+081e04d8  7a0a ldrb r2, [r1, #0x8]
+081e04da  230f mov r3, #0xf
+081e04dc  1c11 add r1, r2, #0x0
+081e04de  4019 and r1, r3
+081e04e0  683a ldr r2, [r7, #0x0]
+081e04e2  7a13 ldrb r3, [r2, #0x8]
+081e04e4  091a lsr r2, r3, #0x04
+081e04e6  1c13 add r3, r2, #0x0
+081e04e8  240f mov r4, #0xf
+081e04ea  1c1a add r2, r3, #0x0
+081e04ec  4022 and r2, r4
+081e04ee  1c14 add r4, r2, #0x0
+081e04f0  0623 lsl r3, r4, #0x18
+081e04f2  0e1a lsr r2, r3, #0x18
+081e04f4  1c14 add r4, r2, #0x0
+081e04f6  00a3 lsl r3, r4, #0x02
+081e04f8  189b add r3, r3, r2
+081e04fa  005a lsl r2, r3, #0x01
+081e04fc  1889 add r1, r1, r2
+081e04fe  7802 ldrb r2, [r0, #0x0]
+081e0500  2300 mov r3, #0x0
+081e0502  401a and r2, r3
+081e0504  1c13 add r3, r2, #0x0
+081e0506  1c1a add r2, r3, #0x0
+081e0508  430a orr r2, r1
+081e050a  1c11 add r1, r2, #0x0
+081e050c  7001 strb r1, [r0, #0x0]
+081e050e  1c38 add r0, r7, #0x0
+081e0510  3008 add r0, #0x8
+081e0512  7801 ldrb r1, [r0, #0x0]
+081e0514  290b cmp r1, #0xb
+081e0516  d80f bhi $081e0538
+081e0518  1c38 add r0, r7, #0x0
+081e051a  3008 add r0, #0x8
+081e051c  6839 ldr r1, [r7, #0x0]
+081e051e  7802 ldrb r2, [r0, #0x0]
+081e0520  2300 mov r3, #0x0
+081e0522  401a and r2, r3
+081e0524  1c13 add r3, r2, #0x0
+081e0526  7a09 ldrb r1, [r1, #0x8]
+081e0528  1c1a add r2, r3, #0x0
+081e052a  430a orr r2, r1
+081e052c  1c11 add r1, r2, #0x0
+081e052e  7001 strb r1, [r0, #0x0]
+081e0530  e011 b $081e0556
+
+081e0532  0000 lsl r0, r0, #0x00
+081e0534  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e0536  0300 lsl r0, r0, #0x0c
+
+081e0538  1c38 add r0, r7, #0x0
+081e053a  3008 add r0, #0x8
+081e053c  6839 ldr r1, [r7, #0x0]
+081e053e  7a0a ldrb r2, [r1, #0x8]
+081e0540  2380 mov r3, #0x80
+081e0542  1c11 add r1, r2, #0x0
+081e0544  4319 orr r1, r3
+081e0546  7802 ldrb r2, [r0, #0x0]
+081e0548  2300 mov r3, #0x0
+081e054a  401a and r2, r3
+081e054c  1c13 add r3, r2, #0x0
+081e054e  1c1a add r2, r3, #0x0
+081e0550  430a orr r2, r1
+081e0552  1c11 add r1, r2, #0x0
+081e0554  7001 strb r1, [r0, #0x0]
+081e0556  1c38 add r0, r7, #0x0
+081e0558  3008 add r0, #0x8
+081e055a  6839 ldr r1, [r7, #0x0]
+081e055c  7842 ldrb r2, [r0, #0x1]
+081e055e  2300 mov r3, #0x0
+081e0560  401a and r2, r3
+081e0562  1c13 add r3, r2, #0x0
+081e0564  7a49 ldrb r1, [r1, #0x9]
+081e0566  1c1a add r2, r3, #0x0
+081e0568  430a orr r2, r1
+081e056a  1c11 add r1, r2, #0x0
+081e056c  7041 strb r1, [r0, #0x1]
+081e056e  480a ldr r0, [$081e0598] (=$080000c4)
+081e0570  2101 mov r1, #0x1
+081e0572  8001 strh r1, [r0, #0x0]
+081e0574  4808 ldr r0, [$081e0598] (=$080000c4)
+081e0576  2105 mov r1, #0x5
+081e0578  8001 strh r1, [r0, #0x0]
+081e057a  4808 ldr r0, [$081e059c] (=$080000c6)
+081e057c  2107 mov r1, #0x7
+081e057e  8001 strh r1, [r0, #0x0]
+081e0580  2068 mov r0, #0x68
+081e0582  f000 bl $081e05e8
+081e0586  1d38 add r0, r7, #0x4
+081e0588  2100 mov r1, #0x0
+081e058a  7001 strb r1, [r0, #0x0]
+081e058c  1d38 add r0, r7, #0x4
+081e058e  7801 ldrb r1, [r0, #0x0]
+081e0590  2901 cmp r1, #0x1
+081e0592  d905 bls $081e05a0
+081e0594  e015 b $081e05c2
+
+081e0596  0000 lsl r0, r0, #0x00
+081e0598  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e059a  0800 lsr r0, r0, #0x00
+081e059c  00c6 lsl r6, r0, #0x03 @ data 0x080000C6
+081e059e  0800 lsr r0, r0, #0x00
+
+081e05a0  1c38 add r0, r7, #0x0
+081e05a2  3008 add r0, #0x8
+081e05a4  1d39 add r1, r7, #0x4
+081e05a6  780a ldrb r2, [r1, #0x0]
+081e05a8  1880 add r0, r0, r2
+081e05aa  7801 ldrb r1, [r0, #0x0]
+081e05ac  1c08 add r0, r1, #0x0
+081e05ae  f000 bl $081e068c
+081e05b2  1d39 add r1, r7, #0x4
+081e05b4  1d38 add r0, r7, #0x4
+081e05b6  1d39 add r1, r7, #0x4
+081e05b8  780a ldrb r2, [r1, #0x0]
+081e05ba  1c51 add r1, r2, #0x1
+081e05bc  1c0a add r2, r1, #0x0
+081e05be  7002 strb r2, [r0, #0x0]
+081e05c0  e7e4 b $081e058c
+081e05c2  4805 ldr r0, [$081e05d8] (=$080000c4)
+081e05c4  2101 mov r1, #0x1
+081e05c6  8001 strh r1, [r0, #0x0]
+081e05c8  4803 ldr r0, [$081e05d8] (=$080000c4)
+081e05ca  2101 mov r1, #0x1
+081e05cc  8001 strh r1, [r0, #0x0]
+081e05ce  4803 ldr r0, [$081e05dc] (=$03000f36)
+081e05d0  2100 mov r1, #0x0
+081e05d2  7001 strb r1, [r0, #0x0]
+081e05d4  2001 mov r0, #0x1
+081e05d6  e003 b $081e05e0
+
+081e05d8  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e05da  0800 lsr r0, r0, #0x00
+081e05dc  0f36 lsr r6, r6, #0x1c @ data 0x03000F36
+081e05de  0300 lsl r0, r0, #0x0c
+
+081e05e0  b003 add sp, #0xc
+081e05e2  bc90 pop {r4,r7}
+081e05e4  bc02 pop {r1}
+081e05e6  4708 bx r1
+
+@ ----------------------------------------------------
+081e05e8  b5b0 push {r4,r5,r7,lr}
+081e05ea  b081 add sp, -#0x4
+081e05ec  466f mov r7, sp
+081e05ee  1c01 add r1, r0, #0x0
+081e05f0  1c3a add r2, r7, #0x0
+081e05f2  7011 strb r1, [r2, #0x0]
+081e05f4  1c79 add r1, r7, #0x1
+081e05f6  2200 mov r2, #0x0
+081e05f8  700a strb r2, [r1, #0x0]
+081e05fa  1c79 add r1, r7, #0x1
+081e05fc  780a ldrb r2, [r1, #0x0]
+081e05fe  2a07 cmp r2, #0x7
+081e0600  d900 bls $081e0604
+081e0602  e03f b $081e0684
+081e0604  1cb9 add r1, r7, #0x2
+081e0606  1c3b add r3, r7, #0x0
+081e0608  781a ldrb r2, [r3, #0x0]
+081e060a  1c7b add r3, r7, #0x1
+081e060c  781c ldrb r4, [r3, #0x0]
+081e060e  2507 mov r5, #0x7
+081e0610  1b2b sub r3, r5, r4
+081e0612  411a asr r2, r3
+081e0614  1c13 add r3, r2, #0x0
+081e0616  2401 mov r4, #0x1
+081e0618  1c1a add r2, r3, #0x0
+081e061a  4022 and r2, r4
+081e061c  1c13 add r3, r2, #0x0
+081e061e  700b strb r3, [r1, #0x0]
+081e0620  4917 ldr r1, [$081e0680] (=$080000c4)
+081e0622  1cba add r2, r7, #0x2
+081e0624  7813 ldrb r3, [r2, #0x0]
+081e0626  1c1a add r2, r3, #0x0
+081e0628  0053 lsl r3, r2, #0x01
+081e062a  1c1a add r2, r3, #0x0
+081e062c  2304 mov r3, #0x4
+081e062e  431a orr r2, r3
+081e0630  1c13 add r3, r2, #0x0
+081e0632  800b strh r3, [r1, #0x0]
+081e0634  4912 ldr r1, [$081e0680] (=$080000c4)
+081e0636  1cba add r2, r7, #0x2
+081e0638  7813 ldrb r3, [r2, #0x0]
+081e063a  1c1a add r2, r3, #0x0
+081e063c  0053 lsl r3, r2, #0x01
+081e063e  1c1a add r2, r3, #0x0
+081e0640  2304 mov r3, #0x4
+081e0642  431a orr r2, r3
+081e0644  1c13 add r3, r2, #0x0
+081e0646  800b strh r3, [r1, #0x0]
+081e0648  490d ldr r1, [$081e0680] (=$080000c4)
+081e064a  1cba add r2, r7, #0x2
+081e064c  7813 ldrb r3, [r2, #0x0]
+081e064e  1c1a add r2, r3, #0x0
+081e0650  0053 lsl r3, r2, #0x01
+081e0652  1c1a add r2, r3, #0x0
+081e0654  2304 mov r3, #0x4
+081e0656  431a orr r2, r3
+081e0658  1c13 add r3, r2, #0x0
+081e065a  800b strh r3, [r1, #0x0]
+081e065c  4908 ldr r1, [$081e0680] (=$080000c4)
+081e065e  1cba add r2, r7, #0x2
+081e0660  7813 ldrb r3, [r2, #0x0]
+081e0662  1c1a add r2, r3, #0x0
+081e0664  0053 lsl r3, r2, #0x01
+081e0666  1c1a add r2, r3, #0x0
+081e0668  2305 mov r3, #0x5
+081e066a  431a orr r2, r3
+081e066c  1c13 add r3, r2, #0x0
+081e066e  800b strh r3, [r1, #0x0]
+081e0670  1c7a add r2, r7, #0x1
+081e0672  1c79 add r1, r7, #0x1
+081e0674  1c7a add r2, r7, #0x1
+081e0676  7813 ldrb r3, [r2, #0x0]
+081e0678  1c5a add r2, r3, #0x1
+081e067a  1c13 add r3, r2, #0x0
+081e067c  700b strb r3, [r1, #0x0]
+081e067e  e7bc b $081e05fa
+
+081e0680  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0682  0800 lsr r0, r0, #0x00
+
+081e0684  b001 add sp, #0x4
+081e0686  bcb0 pop {r4,r5,r7}
+081e0688  bc02 pop {r1}
+081e068a  4708 bx r1
+
+@ ----------------------------------------------------
+081e068c  b590 push {r4,r7,lr}
+081e068e  b081 add sp, -#0x4
+081e0690  466f mov r7, sp
+081e0692  1c01 add r1, r0, #0x0
+081e0694  1c3a add r2, r7, #0x0
+081e0696  7011 strb r1, [r2, #0x0]
+081e0698  1c79 add r1, r7, #0x1
+081e069a  2200 mov r2, #0x0
+081e069c  700a strb r2, [r1, #0x0]
+081e069e  1c79 add r1, r7, #0x1
+081e06a0  780a ldrb r2, [r1, #0x0]
+081e06a2  2a07 cmp r2, #0x7
+081e06a4  d900 bls $081e06a8
+081e06a6  e03d b $081e0724
+081e06a8  1cb9 add r1, r7, #0x2
+081e06aa  1c3b add r3, r7, #0x0
+081e06ac  781a ldrb r2, [r3, #0x0]
+081e06ae  1c7b add r3, r7, #0x1
+081e06b0  781c ldrb r4, [r3, #0x0]
+081e06b2  4122 asr r2, r4
+081e06b4  1c13 add r3, r2, #0x0
+081e06b6  2401 mov r4, #0x1
+081e06b8  1c1a add r2, r3, #0x0
+081e06ba  4022 and r2, r4
+081e06bc  1c13 add r3, r2, #0x0
+081e06be  700b strb r3, [r1, #0x0]
+081e06c0  4917 ldr r1, [$081e0720] (=$080000c4)
+081e06c2  1cba add r2, r7, #0x2
+081e06c4  7813 ldrb r3, [r2, #0x0]
+081e06c6  1c1a add r2, r3, #0x0
+081e06c8  0053 lsl r3, r2, #0x01
+081e06ca  1c1a add r2, r3, #0x0
+081e06cc  2304 mov r3, #0x4
+081e06ce  431a orr r2, r3
+081e06d0  1c13 add r3, r2, #0x0
+081e06d2  800b strh r3, [r1, #0x0]
+081e06d4  4912 ldr r1, [$081e0720] (=$080000c4)
+081e06d6  1cba add r2, r7, #0x2
+081e06d8  7813 ldrb r3, [r2, #0x0]
+081e06da  1c1a add r2, r3, #0x0
+081e06dc  0053 lsl r3, r2, #0x01
+081e06de  1c1a add r2, r3, #0x0
+081e06e0  2304 mov r3, #0x4
+081e06e2  431a orr r2, r3
+081e06e4  1c13 add r3, r2, #0x0
+081e06e6  800b strh r3, [r1, #0x0]
+081e06e8  490d ldr r1, [$081e0720] (=$080000c4)
+081e06ea  1cba add r2, r7, #0x2
+081e06ec  7813 ldrb r3, [r2, #0x0]
+081e06ee  1c1a add r2, r3, #0x0
+081e06f0  0053 lsl r3, r2, #0x01
+081e06f2  1c1a add r2, r3, #0x0
+081e06f4  2304 mov r3, #0x4
+081e06f6  431a orr r2, r3
+081e06f8  1c13 add r3, r2, #0x0
+081e06fa  800b strh r3, [r1, #0x0]
+081e06fc  4908 ldr r1, [$081e0720] (=$080000c4)
+081e06fe  1cba add r2, r7, #0x2
+081e0700  7813 ldrb r3, [r2, #0x0]
+081e0702  1c1a add r2, r3, #0x0
+081e0704  0053 lsl r3, r2, #0x01
+081e0706  1c1a add r2, r3, #0x0
+081e0708  2305 mov r3, #0x5
+081e070a  431a orr r2, r3
+081e070c  1c13 add r3, r2, #0x0
+081e070e  800b strh r3, [r1, #0x0]
+081e0710  1c7a add r2, r7, #0x1
+081e0712  1c79 add r1, r7, #0x1
+081e0714  1c7a add r2, r7, #0x1
+081e0716  7813 ldrb r3, [r2, #0x0]
+081e0718  1c5a add r2, r3, #0x1
+081e071a  1c13 add r3, r2, #0x0
+081e071c  700b strb r3, [r1, #0x0]
+081e071e  e7be b $081e069e
+
+081e0720  00c4 lsl r4, r0, #0x03 @ data 0x080000C4
+081e0722  0800 lsr r0, r0, #0x00
+
+081e0724  b001 add sp, #0x4
+081e0726  bc90 pop {r4,r7}
+081e0728  bc02 pop {r1}
+081e072a  4708 bx r1
+
+@ ----------------------------------------------------
+081e072c  b580 push {r7,lr}
+081e072e  b081 add sp, -#0x4
+081e0730  466f mov r7, sp
+081e0732  1c38 add r0, r7, #0x0
+081e0734  2100 mov r1, #0x0
+081e0736  7001 strb r1, [r0, #0x0]
+081e0738  1c38 add r0, r7, #0x0
+081e073a  7801 ldrb r1, [r0, #0x0]
+081e073c  2907 cmp r1, #0x7
+081e073e  d900 bls $081e0742
+081e0740  e032 b $081e07a8
+081e0742  4818 ldr r0, [$081e07a4] (=$080000c4)
+081e0744  2104 mov r1, #0x4
+081e0746  8001 strh r1, [r0, #0x0]
+081e0748  4816 ldr r0, [$081e07a4] (=$080000c4)
+081e074a  2104 mov r1, #0x4
+081e074c  8001 strh r1, [r0, #0x0]
+081e074e  4815 ldr r0, [$081e07a4] (=$080000c4)
+081e0750  2104 mov r1, #0x4
+081e0752  8001 strh r1, [r0, #0x0]
+081e0754  4813 ldr r0, [$081e07a4] (=$080000c4)
+081e0756  2104 mov r1, #0x4
+081e0758  8001 strh r1, [r0, #0x0]
+081e075a  4812 ldr r0, [$081e07a4] (=$080000c4)
+081e075c  2104 mov r1, #0x4
+081e075e  8001 strh r1, [r0, #0x0]
+081e0760  4810 ldr r0, [$081e07a4] (=$080000c4)
+081e0762  2105 mov r1, #0x5
+081e0764  8001 strh r1, [r0, #0x0]
+081e0766  1c78 add r0, r7, #0x1
+081e0768  490e ldr r1, [$081e07a4] (=$080000c4)
+081e076a  880a ldrh r2, [r1, #0x0]
+081e076c  2302 mov r3, #0x2
+081e076e  1c11 add r1, r2, #0x0
+081e0770  4019 and r1, r3
+081e0772  1c0b add r3, r1, #0x0
+081e0774  041a lsl r2, r3, #0x10
+081e0776  0c11 lsr r1, r2, #0x10
+081e0778  084a lsr r2, r1, #0x01
+081e077a  1c11 add r1, r2, #0x0
+081e077c  7001 strb r1, [r0, #0x0]
+081e077e  1cb8 add r0, r7, #0x2
+081e0780  1cb9 add r1, r7, #0x2
+081e0782  780a ldrb r2, [r1, #0x0]
+081e0784  0851 lsr r1, r2, #0x01
+081e0786  1c7a add r2, r7, #0x1
+081e0788  7813 ldrb r3, [r2, #0x0]
+081e078a  01da lsl r2, r3, #0x07
+081e078c  4311 orr r1, r2
+081e078e  1c0a add r2, r1, #0x0
+081e0790  7002 strb r2, [r0, #0x0]
+081e0792  1c39 add r1, r7, #0x0
+081e0794  1c38 add r0, r7, #0x0
+081e0796  1c39 add r1, r7, #0x0
+081e0798  780a ldrb r2, [r1, #0x0]
+081e079a  1c51 add r1, r2, #0x1
+081e079c  1c0a add r2, r1, #0x0
+081e079e  7002 strb r2, [r0, #0x0]
+081e07a0  e7ca b $081e0738
+081e07a2  0000 lsl r0, r0, #0x00
+081e07a4  00c4 lsl r4, r0, #0x03
+081e07a6  0800 lsr r0, r0, #0x00
+081e07a8  1cb8 add r0, r7, #0x2
+081e07aa  7801 ldrb r1, [r0, #0x0]
+081e07ac  1c08 add r0, r1, #0x0
+081e07ae  e7ff b $081e07b0
+081e07b0  b001 add sp, #0x4
+081e07b2  bc80 pop {r7}
+081e07b4  bc02 pop {r1}
+081e07b6  4708 bx r1

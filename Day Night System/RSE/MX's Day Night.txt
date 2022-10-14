@@ -1,0 +1,388 @@
+Mastermind_X's Day Night System
+===============================
+
+-------------------------------
+Hook 1 - CheckTime
+-------------------------------
+===============================
+Calling Routine {Original-Disassembly}
+===============================
+080542d8  b500 push {lr}
+080542da  4803 ldr r0, [$080542e8] (=$03001770)
+080542dc  6801 ldr r1, [r0, #0x0]
+080542de  4803 ldr r0, [$080542ec] (=$08055355)
+080542e0  4281 cmp r1, r0
+080542e2  d005 beq $080542f0
+080542e4  2000 mov r0, #0x0
+080542e6  e004 b $080542f2
+080542e8  1770 asr r0, r6, #0x1d
+080542ea  0300 lsl r0, r0, #0x0c
+080542ec  5355 strh r5, [r2, r5]
+080542ee  0805 lsr r5, r0, #0x00
+080542f0  2001 mov r0, #0x1
+080542f2  bc02 pop {r1}
+080542f4  4708 bx r1
+080542f6  0000 lsl r0, r0, #0x00
+
+===============================
+Calling Routine {Hacked-Disassembly}
+===============================
+080542d8  b500 push {lr}
+080542da  0000 lsl r0, r0, #0x00
+080542dc  4900 ldr r1, [$080542e0] (=$0203e721)
+080542de  4708 bx r1
+080542e0  e721 b $08054126
+080542e2  0203 lsl r3, r0, #0x08
+080542e4  0000 lsl r0, r0, #0x00
+080542e6  0000 lsl r0, r0, #0x00
+080542e8  0000 lsl r0, r0, #0x00
+080542ea  0000 lsl r0, r0, #0x00
+080542ec  0000 lsl r0, r0, #0x00
+080542ee  0000 lsl r0, r0, #0x00
+080542f0  0000 lsl r0, r0, #0x00
+080542f2  bc02 pop {r1}
+080542f4  4708 bx r1
+080542f6  0000 lsl r0, r0, #0x00
+
+Insert 0000 0049 0847 [Offset+1] 0000 0000 0000 0000 0000 0000 0000 at 0x542DA
+
+===============================
+RAM Routine {Disassembly}
+===============================
+0203e720  b40c push {r2,r3}
+0203e722  4b1e ldr r3, [$0203e79c] (=$0300403a)
+0203e724  7818 ldrb r0, [r3, #0x0]
+0203e726  3301 add r3, #0x1
+0203e728  7819 ldrb r1, [r3, #0x0]
+0203e72a  3301 add r3, #0x1
+0203e72c  781a ldrb r2, [r3, #0x0]
+0203e72e  0400 lsl r0, r0, #0x10
+0203e730  0209 lsl r1, r1, #0x08
+0203e732  4308 orr r0, r1
+0203e734  4310 orr r0, r2
+0203e736  491b ldr r1, [$0203e7a4] (=$00061e00)
+0203e738  4288 cmp r0, r1
+0203e73a  db04 blt $0203e746
+0203e73c  491a ldr r1, [$0203e7a8] (=$00130000)
+0203e73e  4288 cmp r0, r1
+0203e740  dc01 bgt $0203e746
+0203e742  2000 mov r0, #0x0
+0203e744  e017 b $0203e776
+0203e746  2000 mov r0, #0x0
+0203e748  4b1d ldr r3, [$0203e7c0] (=$03004dcb)
+0203e74a  881b ldrh r3, [r3, #0x0]
+0203e74c  2b00 cmp r3, #0x0
+0203e74e  d112 bne $0203e776
+0203e750  4b1c ldr r3, [$0203e7c4] (=$0202000e)
+0203e752  781b ldrb r3, [r3, #0x0]
+0203e754  2b37 cmp r3, #0x37
+0203e756  d10e bne $0203e776
+0203e758  4b1b ldr r3, [$0203e7c8] (=$0202e83f)
+0203e75a  781b ldrb r3, [r3, #0x0]
+0203e75c  2b04 cmp r3, #0x4
+0203e75e  d00a beq $0203e776
+0203e760  4b19 ldr r3, [$0203e7c8] (=$0202e83f)
+0203e762  781b ldrb r3, [r3, #0x0]
+0203e764  2b08 cmp r3, #0x8
+0203e766  d006 beq $0203e776
+0203e768  4b17 ldr r3, [$0203e7c8] (=$0202e83f)
+0203e76a  781b ldrb r3, [r3, #0x0]
+0203e76c  2b09 cmp r3, #0x9
+0203e76e  d002 beq $0203e776
+0203e770  2b00 cmp r3, #0x0
+0203e772  d000 beq $0203e776
+0203e774  2001 mov r0, #0x1
+0203e776  490a ldr r1, [$0203e7a0] (=$0203e000)
+0203e778  7008 strb r0, [r1, #0x0]
+0203e77a  480c ldr r0, [$0203e7ac] (=$030030fc)
+0203e77c  7800 ldrb r0, [r0, #0x0]
+0203e77e  2800 cmp r0, #0x0
+0203e780  d104 bne $0203e78c
+0203e782  480b ldr r0, [$0203e7b0] (=$03003170)
+0203e784  490b ldr r1, [$0203e7b4] (=$00000339)
+0203e786  1840 add r0, r0, r1
+0203e788  7800 ldrb r0, [r0, #0x0]
+0203e78a  e003 b $0203e794
+0203e78c  480a ldr r0, [$0203e7b8] (=$03005000)
+0203e78e  490b ldr r1, [$0203e7bc] (=$00000c1a)
+0203e790  1840 add r0, r0, r1
+0203e792  7800 ldrb r0, [r0, #0x0]
+0203e794  bc0c pop {r2,r3}
+0203e796  490d ldr r1, [$0203e7cc] (=$080542f3)
+0203e798  4708 bx r1
+0203e79a  0000 lsl r0, r0, #0x00
+
+-------------------------------
+Hook 2 - Palette Change
+-------------------------------
+===============================
+Calling Routine {Original-Disassembly}
+===============================
+08073ae0  b530 push {r4,r5,lr}
+08073ae2  4c11 ldr r4, [$08073b28] (=$0202f388)
+08073ae4  7a21 ldrb r1, [r4, #0x8]
+08073ae6  2580 mov r5, #0x80
+08073ae8  1c28 add r0, r5, #0x0
+08073aea  4008 and r0, r1
+08073aec  0600 lsl r0, r0, #0x18
+08073aee  0e03 lsr r3, r0, #0x18
+08073af0  2b00 cmp r3, #0x0
+08073af2  d116 bne $08073b22
+08073af4  490d ldr r1, [$08073b2c] (=$0202eec8)
+08073af6  22a0 mov r2, #0xa0
+08073af8  04d2 lsl r2, r2, #0x13
+08073afa  480d ldr r0, [$08073b30] (=$040000d4)
+08073afc  6001 str r1, [r0, #0x0]
+08073afe  6042 str r2, [r0, #0x4]
+08073b00  490c ldr r1, [$08073b34] (=$80000200)
+08073b02  6081 str r1, [r0, #0x8]
+08073b04  6880 ldr r0, [r0, #0x8]
+08073b06  480c ldr r0, [$08073b38] (=$0202f398)
+08073b08  6003 str r3, [r0, #0x0]
+08073b0a  7a61 ldrb r1, [r4, #0x9]
+08073b0c  2003 mov r0, #0x3
+08073b0e  4008 and r0, r1
+08073b10  2802 cmp r0, #0x2
+08073b12  d106 bne $08073b22
+08073b14  79e1 ldrb r1, [r4, #0x7]
+08073b16  1c28 add r0, r5, #0x0
+08073b18  4008 and r0, r1
+08073b1a  2800 cmp r0, #0x0
+08073b1c  d001 beq $08073b22
+08073b1e  f000 bl $08074a88
+08073b22  bc30 pop {r4,r5}
+08073b24  bc01 pop {r0}
+08073b26  4700 bx r0
+08073b28  f388 bl $083fbf30
+
+===============================
+Calling Routine {Hacked-Disassembly}
+===============================
+08073ae0  b530 push {r4,r5,lr}
+08073ae2  4c11 ldr r4, [$08073b28] (=$0202f388)
+08073ae4  7a21 ldrb r1, [r4, #0x8]
+08073ae6  2580 mov r5, #0x80
+08073ae8  1c28 add r0, r5, #0x0
+08073aea  4008 and r0, r1
+08073aec  0600 lsl r0, r0, #0x18
+08073aee  0e03 lsr r3, r0, #0x18
+08073af0  2b00 cmp r3, #0x0
+08073af2  d116 bne $08073b22
+08073af4  4901 ldr r1, [$08073afc] (=$0203e671)
+08073af6  470a bx r1
+08073af8  0000 lsl r0, r0, #0x00
+08073afa  0000 lsl r0, r0, #0x00
+08073afc  e671 b $080737e2
+08073afe  0203 lsl r3, r0, #0x08
+08073b00  0000 lsl r0, r0, #0x00
+08073b02  0000 lsl r0, r0, #0x00
+08073b04  0000 lsl r0, r0, #0x00
+08073b06  480c ldr r0, [$08073b38] (=$0202f398)
+08073b08  6003 str r3, [r0, #0x0]
+08073b0a  7a61 ldrb r1, [r4, #0x9]
+08073b0c  2003 mov r0, #0x3
+08073b0e  4008 and r0, r1
+08073b10  2802 cmp r0, #0x2
+08073b12  d106 bne $08073b22
+08073b14  79e1 ldrb r1, [r4, #0x7]
+08073b16  1c28 add r0, r5, #0x0
+08073b18  4008 and r0, r1
+08073b1a  2800 cmp r0, #0x0
+08073b1c  d001 beq $08073b22
+08073b1e  f000 bl $08074a88
+08073b22  bc30 pop {r4,r5}
+08073b24  bc01 pop {r0}
+08073b26  4700 bx r0
+08073b28  f388 bl $083fbf30
+
+Insert 0149 0A47 0000 0000 [Offset+1] 0000 0000 0000 at 0x73af4
+
+===============================
+RAM Routine {Disassembly}
+===============================
+0203e670  b4d8 push {r3,r4,r6,r7}
+0203e672  4b1f ldr r3, [$0203e6f0] (=$0203e000)
+0203e674  781b ldrb r3, [r3, #0x0]
+0203e676  2b02 cmp r3, #0x2
+0203e678  d0fe beq $0203e678
+0203e67a  2b00 cmp r3, #0x0
+0203e67c  d101 bne $0203e682
+0203e67e  491d ldr r1, [$0203e6f4] (=$0202eec8)
+0203e680  e026 b $0203e6d0 -
+0203e682  4c1d ldr r4, [$0203e6f8] (=$0203e004)
+0203e684  481b ldr r0, [$0203e6f4] (=$0202eec8)
+0203e686  2302 mov r3, #0x2
+0203e688  021b lsl r3, r3, #0x08
+0203e68a  2200 mov r2, #0x0
+0203e68c  8801 ldrh r1, [r0, #0x0]
+0203e68e  4e1d ldr r6, [$0203e704] (=$ffff0fff)
+0203e690  0917 lsr r7, r2, #0x04
+0203e692  413e asr r6, r7
+0203e694  2701 mov r7, #0x1
+0203e696  403e and r6, r7
+0203e698  2e00 cmp r6, #0x0
+0203e69a  d107 bne $0203e6ac -
+0203e69c  8021 strh r1, [r4, #0x0]
+0203e69e  3002 add r0, #0x2
+0203e6a0  3402 add r4, #0x2
+0203e6a2  3201 add r2, #0x1
+0203e6a4  429a cmp r2, r3
+0203e6a6  dbf1 blt $0203e68c -
+0203e6a8  4913 ldr r1, [$0203e6f8] (=$0203e004)
+0203e6aa  e011 b $0203e6d0
+0203e6ac  251e mov r5, #0x1e
+0203e6ae  016e lsl r6, r5, #0x05
+0203e6b0  0177 lsl r7, r6, #0x05
+0203e6b2  400d and r5, r1
+0203e6b4  400e and r6, r1
+0203e6b6  400f and r7, r1
+0203e6b8  086d lsr r5, r5, #0x01
+0203e6ba  0876 lsr r6, r6, #0x01
+0203e6bc  0000 lsl r0, r0, #0x00
+0203e6be  4335 orr r5, r6
+0203e6c0  433d orr r5, r7
+0203e6c2  8025 strh r5, [r4, #0x0]
+0203e6c4  3002 add r0, #0x2
+0203e6c6  3402 add r4, #0x2
+0203e6c8  3201 add r2, #0x1
+0203e6ca  429a cmp r2, r3
+0203e6cc  dbde blt $0203e68c
+0203e6ce  490a ldr r1, [$0203e6f8] (=$0203e004)
+0203e6d0  22a0 mov r2, #0xa0
+0203e6d2  04d2 lsl r2, r2, #0x13
+0203e6d4  4809 ldr r0, [$0203e6fc] (=$040000d4)
+0203e6d6  6001 str r1, [r0, #0x0]
+0203e6d8  3004 add r0, #0x4
+0203e6da  6002 str r2, [r0, #0x0]
+0203e6dc  4908 ldr r1, [$0203e700] (=$80000200)
+0203e6de  3004 add r0, #0x4
+0203e6e0  6001 str r1, [r0, #0x0]
+0203e6e2  6800 ldr r0, [r0, #0x0]
+0203e6e2  6800 ldr r0, [r0, #0x0]
+0203e6e4  bcd8 pop {r3,r4,r6,r7}
+0203e6e6  4801 ldr r0, [$0203e6ec] (=$08073b07)
+0203e6e8  4700 bx r0
+0203e6ea  0000 lsl r0, r0, #0x00
+
+-------------------------------
+Hook 3 - Palette Calculation
+-------------------------------
+For Ruby this isn't needed (3rd Routine) as including it won't make a difference
+===============================
+Calling Routine {Original-Disassembly}
+===============================
+08073cdc  7a21 ldrb r1, [r4, #0x8]
+08073cde  09cd lsr r5, r1, #0x07
+08073ce0  207f mov r0, #0x7f
+08073ce2  4008 and r0, r1
+08073ce4  7220 strb r0, [r4, #0x8]
+08073ce6  4812 ldr r0, [$08073d30] (=$0202eec8)
+08073ce8  21a0 mov r1, #0xa0
+08073cea  04c9 lsl r1, r1, #0x13
+08073cec  4a11 ldr r2, [$08073d34] (=$04000100)
+08073cee  f16c bl $081e07ec
+08073cf2  4911 ldr r1, [$08073d38] (=$0202f398)
+08073cf4  2000 mov r0, #0x0
+08073cf6  6008 str r0, [r1, #0x0]
+08073cf8  7a61 ldrb r1, [r4, #0x9]
+08073cfa  2003 mov r0, #0x3
+08073cfc  4008 and r0, r1
+08073cfe  2802 cmp r0, #0x2
+08073d00  d106 bne $08073d10
+08073d02  79e1 ldrb r1, [r4, #0x7]
+
+===============================
+Calling Routine {Hacked-Disassembly}
+===============================
+08073cdc  4d01 ldr r5, [$08073ce4] (=$0203e601)
+08073cde  4728 bx r5
+08073ce0  0000 lsl r0, r0, #0x00
+08073ce2  0000 lsl r0, r0, #0x00
+08073ce4  e601 b $080738ea
+08073ce6  0203 lsl r3, r0, #0x08
+08073ce8  21a0 mov r1, #0xa0
+08073cea  04c9 lsl r1, r1, #0x13
+08073cec  4a11 ldr r2, [$08073d34] (=$04000100)
+08073cee  f16c bl $081e07ec
+08073cf2  4911 ldr r1, [$08073d38] (=$0202f398)
+08073cf4  2000 mov r0, #0x0
+08073cf6  6008 str r0, [r1, #0x0]
+08073cf8  7a61 ldrb r1, [r4, #0x9]
+08073cfa  2003 mov r0, #0x3
+08073cfc  4008 and r0, r1
+08073cfe  2802 cmp r0, #0x2
+08073d00  d106 bne $08073d10
+08073d02  79e1 ldrb r1, [r4, #0x7]
+
+Insert 014D 2847 0000 0000 [Offset+1] at 0x73cdc
+
+===============================
+RAM Routine {Disassembly}
+===============================
+0203e600  b4d8 push {r3,r4,r6,r7}
+0203e602  4643 mov r3, r8
+0203e604  b408 push {r3}
+0203e606  3408 add r4, #0x8
+0203e608  7821 ldrb r1, [r4, #0x0]
+0203e60a  09cd lsr r5, r1, #0x07
+0203e60c  46a8 mov r8, r5
+0203e60e  207f mov r0, #0x7f
+0203e610  4008 and r0, r1
+0203e612  7020 strb r0, [r4, #0x0]
+0203e614  4b12 ldr r3, [$0203e660] (=$0203e000)
+0203e616  781b ldrb r3, [r3, #0x0]
+0203e618  2b00 cmp r3, #0x0
+0203e61a  d101 bne $0203e620
+0203e61c  4811 ldr r0, [$0203e664] (=$0202eec8)
+0203e61e  e017 b $0203e650
+0203e620  4c11 ldr r4, [$0203e668] (=$0203e004)
+0203e622  4810 ldr r0, [$0203e664] (=$0202eec8)
+0203e624  2302 mov r3, #0x2
+0203e626  021b lsl r3, r3, #0x08
+0203e628  2200 mov r2, #0x0
+0203e62a  8801 ldrh r1, [r0, #0x0]
+0203e62c  251e mov r5, #0x1e
+0203e62e  016e lsl r6, r5, #0x05
+0203e630  0177 lsl r7, r6, #0x05
+0203e632  400d and r5, r1
+0203e634  400e and r6, r1
+0203e636  400f and r7, r1
+0203e638  086d lsr r5, r5, #0x01
+0203e63a  0876 lsr r6, r6, #0x01
+0203e63c  0000 lsl r0, r0, #0x00
+0203e63e  4335 orr r5, r6
+0203e640  433d orr r5, r7
+0203e642  8025 strh r5, [r4, #0x0]
+0203e644  3002 add r0, #0x2
+0203e646  3402 add r4, #0x2
+0203e648  3201 add r2, #0x1
+0203e64a  429a cmp r2, r3
+0203e64c  dbed blt $0203e62a
+0203e64e  4806 ldr r0, [$0203e668] (=$0203e004)
+0203e650  4645 mov r5, r8
+0203e652  bc08 pop {r3}
+0203e654  4698 mov r8, r3
+0203e656  bcd8 pop {r3,r4,r6,r7}
+0203e658  4900 ldr r1, [$0203e65c] (=$08073ce9)
+0203e65a  4708 bx r1
+
+SWI01 Hack
+==========
+Put Fe20 at 0x252
+Put 0000 at 0x2CA
+
+Time Periods
+============
+Morning: 4AM - 6AM {0x1}
+Day: 6AM - 5PM {0x0}
+Afternoon: 5PM - 6.30PM {0x2}
+Evening: 6.30PM - 10PM {0x3}
+Night: 10PM - 4AM {0x4}
+
+To Do List
+==========
+-Add palette changes for different time periods (Done)
+-Add windows night effect
+-Add different music for different periods
+-Add Day/Night Encounters
+-Add Clothes System
