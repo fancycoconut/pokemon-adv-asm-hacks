@@ -272,39 +272,39 @@
 
 @ -------------------------------------------------------------------
 .align 2
-.REG_DISPCNT:					.word 0x04000000
-.REG_BG0CNT:					.word 0x04000008
-.REG_KEYINPUT:					.word 0x04000130
-.Palette:					.word 0x0202EEC8
-.NullRAM:					.word 0x02042000
-.OBJRAM:					.word 0x06010000
-.OBJAttribute:					.word 0x030017AC
-.MusicInfo:					.word 0x03007380
+.REG_DISPCNT:																					.word 0x04000000
+.REG_BG0CNT:																					.word 0x04000008
+.REG_KEYINPUT:																				.word 0x04000130
+.Palette:																							.word 0x0202EEC8
+.NullRAM:																							.word 0x02042000
+.OBJRAM:																							.word 0x06010000
+.OBJAttribute:																				.word 0x030017AC
+.MusicInfo:																						.word 0x03007380
 
-.PaletteLoader:					.word 0x08073A59
-.Loader:					.word 0x080003CD
-.ResetGame:					.word 0x0813BA45
-.PlayMusic:					.word 0x081DDEF9
-.PlayCry:					.word 0x08075045
-.GamestartMenu:					.word 0x080096F1
+.PaletteLoader:																				.word 0x08073A59
+.Loader:																							.word 0x080003CD
+.ResetGame:																						.word 0x0813BA45
+.PlayMusic:																						.word 0x081DDEF9
+.PlayCry:																							.word 0x08075045
+.GamestartMenu:																				.word 0x080096F1
 
-.TitlescreenPalette:				.word 0x08393210
-.TitlescreenTileset:				.word 0x08900000
-.TitlescreenTilesetBase:			.word 0x06008000
-.TitlescreenTilemapBG2:				.word 0x089FFF98
-.TitlescreenTilemapBG2Base:			.word 0x0600E800
-.TitlescreenTilemapBG3:				.word 0x089FFBA0
-.TitlescreenTilemapBG3Base:			.word 0x06005000
+.TitlescreenPalette:																	.word 0x08393210
+.TitlescreenTileset:																	.word 0x08900000
+.TitlescreenTilesetBase:															.word 0x06008000
+.TitlescreenTilemapBG2:																.word 0x089FFF98
+.TitlescreenTilemapBG2Base:														.word 0x0600E800
+.TitlescreenTilemapBG3:																.word 0x089FFBA0
+.TitlescreenTilemapBG3Base:														.word 0x06005000
 
-.LogoPalette:					.word 0x08A00260
-.LogoTileset:					.word 0x08A00434
-.LogoTilesetBase:				.word 0x06000000
-.LogoTilemap:					.word 0x08A01DF0
-.LogoTilemapBase:				.word 0x0600F800
+.LogoPalette:																					.word 0x08A00260
+.LogoTileset:																					.word 0x08A00434
+.LogoTilesetBase:																			.word 0x06000000
+.LogoTilemap:																					.word 0x08A01DF0
+.LogoTilemapBase:																			.word 0x0600F800
 
-.HoOhPalette:					.word 0x08B00000
-.HoOh1:						.word 0x08B00064
-.HoOh2:						.word 0x08B0088C
+.HoOhPalette:																					.word 0x08B00000
+.HoOh1:																								.word 0x08B00064
+.HoOh2:																								.word 0x08B0088C
 @ -------------------------------------------------------------------
 @ To use this routine, repoint the pointers in the following offsets
 @ to the offset where you place this routine(s)
