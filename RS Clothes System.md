@@ -37,7 +37,7 @@ We will call a function that does the pointer loading and then branch link to 08
 
 To hack it, place `08B4 014B 1847 0000 [Offset to routine +1] 0000 0000 0000 0000 0000 0000 0000 08BC` at *0x5be90*.
 
-### Extended Routine
+## Extended Routine
 
 ```asm
 @ RS Clothes System Hack (Professional Version)
@@ -126,7 +126,7 @@ To hack it, place `08B4 014B 1847 0000 [Offset to routine +1] 0000 0000 0000 000
 .word 0x0805bEAB
 ```
 
-### How it works
+## How it works
 
 This hack loads the player's overworld palette from a table of pointers to the palettes consisting of the sprite and the sprite's reflection hence a total of 0x40 bytes. To use this system, we must create a table - two tables one for male and female respectively. The table is in this format:
 
@@ -134,7 +134,7 @@ This hack loads the player's overworld palette from a table of pointers to the p
 
 At the pointers we have two palette data, the sprite's palette and reflection palette. To use the clothes we set a variable to the clothes/palette index in the table. Just don't set it past the table limit as it can cause glitches.
 
-### What's left?
+## What's left?
 
 * A instant palette loading routine to be called in a script after the `setvar` to make it look instantaneous.
 * A hack for the trainer card as well.
