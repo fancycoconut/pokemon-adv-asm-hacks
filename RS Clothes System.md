@@ -40,7 +40,6 @@ To hack it, place `08B4 014B 1847 0000 [Offset to routine +1] 0000 0000 0000 000
 ### Extended Routine
 
 ```asm
------------------
 @ RS Clothes System Hack (Professional Version)
 @ By ZodiacDaGreat
 @ Version 1.0.0

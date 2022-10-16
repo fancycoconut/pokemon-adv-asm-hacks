@@ -1,8 +1,10 @@
-@ Tileset Animation Hack
-@ By ZodiacDaGreat
-@ ------------------------------------------------------------------
+# Tileset Animation Routines
 
-@ Tileset 0 Animation Routine {Major Tileset}
+The following are tileset animation routines for Pokemon Ruby.
+
+## Tileset 0 Animation Routine { Major Tileset }
+
+```asm
 @ Routine called by the Tileset Header
 @ ------------------------------------------------------------------
 08072fc4  4905 ldr r1, [$08072fdc] (=$030006c2)
@@ -17,9 +19,11 @@
 08072fd6  4804 ldr r0, [$08072fe8] (=$08073015) @ Animation Routine
 08072fd8  6008 str r0, [r1, #0x0]
 08072fda  4770 bx lr
+```
 
-@ Animation Routine
-@ ------------------------------------------------------------------
+## Main Animation Routine
+
+```asm
 08073014  b530 push {r4,r5,lr}
 08073016  0405 lsl r5, r0, #0x10
 08073018  20f0 mov r0, #0xf0
@@ -48,9 +52,11 @@
 0807304e  f000 bl $0807361c @ Water Animation2
 08073052  bc30 pop {r4,r5}
 08073054  bc01 pop {r0}
+```
 
-@ Flower Animation
-@ ------------------------------------------------------------------
+## Flower Animation
+
+```asm
 08073070  b500 push {lr}
 08073072  0400 lsl r0, r0, #0x10
 08073074  21c0 mov r1, #0xc0
@@ -65,9 +71,11 @@
 08073086  f7ff bl $08072e24 @ Animation Function
 0807308a  bc01 pop {r0}
 0807308c  4700 bx r0
+```
 
-@ Water Animation
-@ ------------------------------------------------------------------
+## Water Animation
+
+```asm
 08073098  b500 push {lr}
 0807309a  0400 lsl r0, r0, #0x10
 0807309c  0c00 lsr r0, r0, #0x10
@@ -83,9 +91,11 @@
 080730b0  f7ff bl $08072e24 @ Animation Function
 080730b4  bc01 pop {r0}
 080730b6  4700 bx r0
+```
 
-@ Shore-line Sand Animation
-@ ------------------------------------------------------------------
+## Shore-line Sand Animation
+
+```asm
 080730c0  b500 push {lr}
 080730c2  0400 lsl r0, r0, #0x10
 080730c4  21e0 mov r1, #0xe0
@@ -101,9 +111,11 @@
 080730d8  f7ff bl $08072e24 @ Animation Function
 080730dc  bc01 pop {r0}
 080730de  4700 bx r0
+```
 
-@ Waterfall Animation
-@ ------------------------------------------------------------------
+## Waterfall Animation
+
+```asm
 080730e8  b500 push {lr}
 080730ea  0400 lsl r0, r0, #0x10
 080730ec  21c0 mov r1, #0xc0
@@ -118,9 +130,11 @@
 080730fe  f7ff bl $08072e24 @ Animation Function
 08073102  bc01 pop {r0}
 08073104  4700 bx r0
+```
 
-@ Water Animation2
-@ ------------------------------------------------------------------
+## Water Animation 2
+
+```asm
 0807361c  b500 push {lr}
 0807361e  0400 lsl r0, r0, #0x10
 08073620  21c0 mov r1, #0xc0
@@ -136,6 +150,9 @@
 08073634  f7ff bl $08072e24 @ Animation Function
 08073638  bc01 pop {r0}
 0807363a  4700 bx r0
+```
+
+## TODO
 
 @ Tileset 1 Animation Routine {Secondary Tileset}
 @ Routine called by the Tileset Header
