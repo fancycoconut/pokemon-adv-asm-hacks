@@ -27,6 +27,7 @@ This pointer is at 0x56d48 in reversed format. So, to make Ruby use a Fire Red s
 
 Finally we need Advance Map to display the correct tileset size, so we need to hack it's ini. Find 'AdvanceMap.ini' in the ini folder and find this:
 
+```text
 [Version:AXV]
 mainfile=ini/Main.ini
 mapsfile=ini/Maps.ini
@@ -39,3 +40,4 @@ AnzTilesets=57
 SuchByte=$FF
 SuchBeginn=$6B0000
 AnzItems=348
+```
